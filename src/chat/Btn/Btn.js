@@ -31,7 +31,7 @@ function Btn(props) {
                             content: path,
                             created: time + " " + date,
                             sent: false,
-                            type: "img"
+                           // type: "img"
                         });
                         props.set(users[props.id].chats[i].text.concat([]));
                         props.setLast(users[props.id].chats.concat([]));
@@ -65,7 +65,7 @@ function Btn(props) {
                             content: path,
                             created: time + " " + date,
                             sent: false,
-                            type: "video"
+                            //type: "video"
                         });
                         props.set(users[props.id].chats[i].text.concat([]));
                         props.setLast(users[props.id].chats.concat([]));
@@ -98,7 +98,7 @@ function Btn(props) {
                             content: path,
                             created: time + " " + date,
                             sent: false,
-                            type: "audio"
+                          //  type: "audio"
                         });
                         props.set(users[props.id].chats[i].text.concat([]));
                         props.setLast(users[props.id].chats.concat([]));
@@ -112,7 +112,7 @@ function Btn(props) {
     }
 
 
-    function send(type) {
+    function send() {
         let currentText = document.getElementById("current-text").value;
         if (currentText === '') {
             return;
@@ -128,7 +128,7 @@ function Btn(props) {
                     content: currentText,
                     created: time + " " + date,
                     sent: false,
-                    type: type
+                    //type: type
                 });
                 props.set(users[props.id].chats[i].text.concat([]));
                 props.setLast(users[props.id].chats.concat([]));
@@ -155,7 +155,7 @@ function Btn(props) {
                     content: srcRec,
                     created: time + " " + date,
                     sent: false,
-                    type: "audio"
+                   // type: "audio"
                 });
                 props.set(users[props.id].chats[i].text.concat([]));
                 props.setLast(users[props.id].chats.concat([]));
@@ -181,7 +181,7 @@ function Btn(props) {
                     content: srcVid,
                     created: time + " " + date,
                     sent: false,
-                    type: "video"
+                  //  type: "video"
                 });
                 props.set(users[props.id].chats[i].text.concat([]));
                 props.setLast(users[props.id].chats.concat([]));
@@ -269,7 +269,7 @@ function Btn(props) {
                 </button>
 
                 <input id="current-text" type="text" style={{borderRadius:"50px"}} className="form-control" aria-label="Text input with 2 dropdown buttons"/>
-                <button style={{backgroundColor:"transparent", border:"0px"}} onClick={()=>send("txt")}>
+                <button style={{backgroundColor:"transparent", border:"0px"}} onClick={()=>send()}>
                     <i className='fa fa-send'></i>
                 </button>
 

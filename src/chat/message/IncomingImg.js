@@ -1,9 +1,9 @@
 import './IncomingMessage.css'
 
-function IncomingImg({content,created,type}) {
+function IncomingImg({content,created}) {
 
     var d = new Date();
-    if (type === "txt") {
+
         return (
             <img src={require(".")} className="incoming">
                 {content}
@@ -13,6 +13,6 @@ function IncomingImg({content,created,type}) {
                 </div>
             </img>
         );
-    }
+
 }
 export default IncomingImg
