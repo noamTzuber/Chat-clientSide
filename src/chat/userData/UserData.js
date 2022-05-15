@@ -13,7 +13,7 @@ function UserData(props) {
         profilePic = require("../../DB/profilePictures/".concat("", users[props.id].profilePic));
     }
 
-    var nickname = users[props.id].nickName;
+    var nickname = users[props.id].name;
 
     function addUser() {
         document.getElementById("addUserErrorMessage").innerHTML = "";
@@ -41,7 +41,7 @@ function UserData(props) {
             document.getElementById("addUserErrorMessage").innerHTML = "the user already exist";
         }
         else if(exist && !onMyContacts && contactName !== users[props.id].id){
-            users[props.id].chats.push({contact: contactName,nickName: users[i].nickName, img: users[i].profilePic, lastMessage: "", lastTime: "", text: []})
+            users[props.id].chats.push({contact: contactName,name: users[i].name, img: users[i].profilePic, lastMessage: "", lastTime: "", text: []})
             props.setContacts(users[props.id].chats.concat([]))
             document.getElementById("closeButtonModal").click();
 

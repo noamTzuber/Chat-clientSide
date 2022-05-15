@@ -56,7 +56,7 @@ function Register() {
             fReader.onloadend = function (event) {
                 if (errorMessage.innerHTML === "") {
                     //push
-                    users.push({ id: newUserName, profilePic: event.target.result, nickName:newNickname, password: newPassword, chats: []})
+                    users.push({ id: newUserName, profilePic: event.target.result, name:newNickname, password: newPassword, chats: []})
                     navigate('/Chat', {state:{id: users.length-1}})
                 }
             }

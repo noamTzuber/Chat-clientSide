@@ -1,12 +1,12 @@
 export const users = [{
     id: 'harry',
-    nickName: 'potter',
+    name: 'potter',
     password: 'harry1234',
     profilePic: "harry.jpg",
     chats: [
         {
             contact: 'Malfoy',
-            nickName: 'Malfoy',
+            name: 'Malfoy',
             img: "malfoy.jpg",
             lastMessage: 'no way!',
             lastTime: '18:32 13.04.22',
@@ -15,7 +15,7 @@ export const users = [{
         },
         {
             contact: 'Hermione',
-            nickName: 'Hermione',
+            name: 'Hermione',
             img: "hermione.jpg",
             lastMessage: 'image',
             lastTime: '16:43 13.04.22',
@@ -24,7 +24,7 @@ export const users = [{
         },
         {
             contact: 'Ron',
-            nickName: 'Weasley',
+            name: 'Weasley',
             img: "ron.jpg",
             lastMessage: 'audio',
             lastTime: '13:56 13.04.22',
@@ -33,7 +33,7 @@ export const users = [{
         },
         {
             contact: 'Dumbledore',
-            nickName: 'Dumbush',
+            name: 'Dumbush',
             img: "dumbledore.jpg",
             lastMessage: 'You are a wizard Harry!',
             lastTime: '10:24 13.04.22',
@@ -41,7 +41,7 @@ export const users = [{
         },
         {
             contact: 'Voldemort',
-            nickName: 'Tom',
+            name: 'Tom',
             img: "voldemort.jpeg",
             lastMessage: 'video',
             lastTime: '9:02 13.04.22',
@@ -50,13 +50,13 @@ export const users = [{
     ]
 },{
     id: 'noam',
-    nickName: 'Noamos',
+    name: 'Noamos',
     password: 'noam1234',
     profilePic: "ron.jpg",
     chats: [
     {
         contact: 'harry',
-        nickName: 'potter',
+        name: 'potter',
         img: "harry.jpg",
         lastMessage: 'Hey my name is noam',
         lastTime: '20:29 14.04.22',
@@ -67,13 +67,13 @@ export const users = [{
 },
         {
         id: 'itay',
-        nickName: 'itayos',
+        name: 'itayos',
         password: 'itay1234',
         profilePic: "dobby.jpg",
         chats: [
             {
                 contact: 'harry',
-                nickName: 'potter',
+                name: 'potter',
                 img: "harry.jpg",
                 lastMessage: 'Hey my name is noam',
                 lastTime: '20:29 14.04.22',

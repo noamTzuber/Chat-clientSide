@@ -41,7 +41,7 @@ function SummaryConversation(props) {
                             <div>
                                 <div className="row">
                                     <div className="col-8">
-                                        <span style={{fontSize:"120%", marginLeft:"5px"}}>{props.nickName}</span>
+                                        <span style={{fontSize:"120%", marginLeft:"5px"}}>{props.name}</span>
                                     </div>
                                     <div className="col-4">
                                         <span className="dateOnSummery" >{props.lastTime}</span>
