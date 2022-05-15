@@ -30,7 +30,7 @@ function Btn(props) {
                         users[props.id].chats[i].text.push({
                             txt: path,
                             time: time + " " + date,
-                            isIncoming: 0,
+                            sent: false,
                             type: "img"
                         });
                         props.set(users[props.id].chats[i].text.concat([]));
@@ -64,7 +64,7 @@ function Btn(props) {
                         users[props.id].chats[i].text.push({
                             txt: path,
                             time: time + " " + date,
-                            isIncoming: 0,
+                            sent: false,
                             type: "video"
                         });
                         props.set(users[props.id].chats[i].text.concat([]));
@@ -97,7 +97,7 @@ function Btn(props) {
                         users[props.id].chats[i].text.push({
                             txt: path,
                             time: time + " " + date,
-                            isIncoming: 0,
+                            sent: false,
                             type: "audio"
                         });
                         props.set(users[props.id].chats[i].text.concat([]));
@@ -127,7 +127,7 @@ function Btn(props) {
                 users[props.id].chats[i].text.push({
                     txt: currentText,
                     time: time + " " + date,
-                    isIncoming: 0,
+                    sent: false,
                     type: type
                 });
                 props.set(users[props.id].chats[i].text.concat([]));
@@ -154,7 +154,7 @@ function Btn(props) {
                 users[props.id].chats[i].text.push({
                     txt: srcRec,
                     time: time + " " + date,
-                    isIncoming: 0,
+                    sent: false,
                     type: "audio"
                 });
                 props.set(users[props.id].chats[i].text.concat([]));
@@ -180,7 +180,7 @@ function Btn(props) {
                 users[props.id].chats[i].text.push({
                     txt: srcVid,
                     time: time + " " + date,
-                    isIncoming: 0,
+                    sent: false,
                     type: "video"
                 });
                 props.set(users[props.id].chats[i].text.concat([]));

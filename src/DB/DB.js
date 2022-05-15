@@ -10,8 +10,8 @@ export const users = [{
             img: "malfoy.jpg",
             last: 'no way!',
             lastdate: '18:32 13.04.22',
-            text: [{txt: 'Hey Potter! Want to join Slytherin?', isIncoming: 1, time: "18:29 13.04.22", type:"txt"}, 
-            {txt: "no way!", isIncoming: 0 , time: "18:32 13.04.22",type:"txt"}]
+            text: [{txt: 'Hey Potter! Want to join Slytherin?', sent: true, time: "18:29 13.04.22", type:"txt"},{txt: 'Hey Potter! Want to join Slytherin?', sent: false, time: "18:29 13.04.22", type:"txt"},
+            {txt: "no way!", sent: false , time: "18:32 13.04.22",type:"txt"},{txt: "no way!", sent: true , time: "18:32 13.04.22",type:"txt"}]
         },
         {
             idc: 'Hermione',
@@ -19,7 +19,7 @@ export const users = [{
             img: "hermione.jpg",
             last: 'image',
             lastdate: '16:43 13.04.22',
-            text: [{txt: 'Does the scar hurt you again?', isIncoming: 1, time: "16:29 13.04.22", type:"txt"}
+            text: [{txt: 'Does the scar hurt you again?', sent: true, time: "16:29 13.04.22", type:"txt"}
             ]
         },
         {
@@ -28,7 +28,7 @@ export const users = [{
             img: "ron.jpg",
             last: 'audio',
             lastdate: '13:56 13.04.22',
-            text: [{txt: 'We need to get 100 in the test!', isIncoming: 1, time: "13:14 13.04.22", type:"txt"}
+            text: [{txt: 'We need to get 100 in the test!', sent: true, time: "13:14 13.04.22", type:"txt"}
             ]
         },
         {
@@ -37,7 +37,7 @@ export const users = [{
             img: "dumbledore.jpg",
             last: 'You are a wizard Harry!',
             lastdate: '10:24 13.04.22',
-            text: [{txt: 'You are a wizard Harry!', isIncoming: 1, time: "10:24 13.04.22", type:"txt"}]
+            text: [{txt: 'You are a wizard Harry!', sent: true, time: "10:24 13.04.22", type:"txt"}]
         },
         {
             idc: 'Voldemort',
@@ -45,7 +45,7 @@ export const users = [{
             img: "voldemort.jpeg",
             last: 'video',
             lastdate: '9:02 13.04.22',
-            text: [{txt: 'I come for you...', isIncoming: 1, time: "9:01 13.04.22", type:"txt"}]
+            text: [{txt: 'I come for you...', sent: true, time: "9:01 13.04.22", type:"txt"}]
         },
     ]
 },{
@@ -60,7 +60,7 @@ export const users = [{
         img: "harry.jpg",
         last: 'Hey my name is noam',
         lastdate: '20:29 14.04.22',
-        text: [{txt: 'Hey my name is noam', isIncoming: 0, time: "20:29 14.04.22", type:"txt"}]
+        text: [{txt: 'Hey my name is noam', sent: false, time: "20:29 14.04.22", type:"txt"}]
     },
     
 ]
@@ -77,7 +77,7 @@ export const users = [{
                 img: "harry.jpg",
                 last: 'Hey my name is noam',
                 lastdate: '20:29 14.04.22',
-                text: [{txt: 'Hey my name is noam', isIncoming: 0, time: "20:29 14.04.22", type:"txt"}]
+                text: [{txt: 'Hey my name is noam', sent: false, time: "20:29 14.04.22", type:"txt"}]
             },
 
         ]

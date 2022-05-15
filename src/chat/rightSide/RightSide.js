@@ -17,7 +17,7 @@ function RightSide(props) {
 
                     {props.currentConversation.text.map((src, key ) => {
 
-                        if (src.isIncoming === 0) {
+                        if (src.sent === false) {
                             return <Outgoing {...src} key={key}/>
                         }
                         return <IncomingMessage {...src} key={key}/>
