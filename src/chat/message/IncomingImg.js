@@ -1,15 +1,15 @@
 import './IncomingMessage.css'
 
-function IncomingImg({txt,time,type}) {
+function IncomingImg({content,created,type}) {
 
     var d = new Date();
     if (type === "txt") {
         return (
             <img src={require(".")} className="incoming">
-                {txt}
+                {content}
                 <div>
                     <small style={{fontSize: "70%"}} className="text-muted" id="slast-ma">
-                        {time}</small>
+                        {created}</small>
                 </div>
             </img>
         );

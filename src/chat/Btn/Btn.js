@@ -28,8 +28,8 @@ function Btn(props) {
                         users[props.id].chats[i].last = "img";
                         users[props.id].chats[i].lastdata = time + ' ' + date;
                         users[props.id].chats[i].text.push({
-                            txt: path,
-                            time: time + " " + date,
+                            content: path,
+                            created: time + " " + date,
                             sent: false,
                             type: "img"
                         });
@@ -62,8 +62,8 @@ function Btn(props) {
                         users[props.id].chats[i].last = "video";
                         users[props.id].chats[i].lastdate = time + ' ' + date;
                         users[props.id].chats[i].text.push({
-                            txt: path,
-                            time: time + " " + date,
+                            content: path,
+                            created: time + " " + date,
                             sent: false,
                             type: "video"
                         });
@@ -95,8 +95,8 @@ function Btn(props) {
                         users[props.id].chats[i].last = "audio";
                         users[props.id].chats[i].lastdate = time + ' ' + date;
                         users[props.id].chats[i].text.push({
-                            txt: path,
-                            time: time + " " + date,
+                            content: path,
+                            created: time + " " + date,
                             sent: false,
                             type: "audio"
                         });
@@ -125,8 +125,8 @@ function Btn(props) {
                 users[props.id].chats[i].last = currentText;
                 users[props.id].chats[i].lastdata = time + ' ' + date;
                 users[props.id].chats[i].text.push({
-                    txt: currentText,
-                    time: time + " " + date,
+                    content: currentText,
+                    created: time + " " + date,
                     sent: false,
                     type: type
                 });
@@ -152,8 +152,8 @@ function Btn(props) {
                 users[props.id].chats[i].last = "audio";
                 users[props.id].chats[i].lastdata = time + ' ' + date;
                 users[props.id].chats[i].text.push({
-                    txt: srcRec,
-                    time: time + " " + date,
+                    content: srcRec,
+                    created: time + " " + date,
                     sent: false,
                     type: "audio"
                 });
@@ -178,8 +178,8 @@ function Btn(props) {
                 users[props.id].chats[i].last = "video";
                 users[props.id].chats[i].lastdata = time + ' ' + date;
                 users[props.id].chats[i].text.push({
-                    txt: srcVid,
-                    time: time + " " + date,
+                    content: srcVid,
+                    created: time + " " + date,
                     sent: false,
                     type: "video"
                 });

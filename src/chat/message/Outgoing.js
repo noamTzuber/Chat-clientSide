@@ -1,15 +1,15 @@
 import './Outgoing.css'
 
-function Outgoing({txt,time,type}) {
+function Outgoing({content,created,type}) {
 
     if(type==="img") {
 
         return (
             <div className="Outgoing">
-                <img style={{width: "-webkit-fill-available"}} controls src={txt}/>
+                <img style={{width: "-webkit-fill-available"}} controls src={content}/>
                 <div>
                     <small style={{fontSize: "70%"}} className="text-muted" id="slast-ma">
-                        {time}</small>
+                        {created}</small>
                 </div>
             </div>
         );
@@ -20,10 +20,10 @@ function Outgoing({txt,time,type}) {
     {
     return (
             <div className="Outgoing" style={{wordBreak:"break-all"}}>
-                {txt}
+                {content}
                 <div>
                     <small style={{fontSize: "70%"}} className="text-muted" id="slast-ma">
-                        {time}</small>
+                        {created}</small>
                 </div>
             </div>
     );
@@ -32,10 +32,10 @@ function Outgoing({txt,time,type}) {
 
         return (
             <div className="Outgoing">
-                <audio style={{width: "-webkit-fill-available"}} controls src={txt}/>
+                <audio style={{width: "-webkit-fill-available"}} controls src={content}/>
                 <div>
                     <small style={{fontSize: "70%"}} className="text-muted" id="slast-ma">
-                        {time}</small>
+                        {created}</small>
                 </div>
             </div>
         );
@@ -44,10 +44,10 @@ function Outgoing({txt,time,type}) {
 
             return (
                 <div className="Outgoing">
-                    <video style={{width: "-webkit-fill-available"}} controls src={txt}/>
+                    <video style={{width: "-webkit-fill-available"}} controls src={content}/>
                     <div>
                         <small style={{fontSize: "70%"}} className="text-muted" id="slast-ma">
-                            {time}</small>
+                            {created}</small>
                     </div>
                 </div>
             );
