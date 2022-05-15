@@ -15,13 +15,13 @@ function SummaryConversation(props) {
         showBottomBar();
     }
     //const profilePic = require("../../DB/profilePictures/".concat("", users[0].chats[props.key].img));
-    var lastMessage;
+
     function shortLastMessage(){
         let maxSize = 25;
-        if(props.lastMessage.length < maxSize){
-            return props.lastMessage;
+        if(props.last.length < maxSize){
+            return props.last;
         }
-        return props.lastMessage.substring(0,maxSize).concat('',"...");
+        return props.last.substring(0,maxSize).concat('',"...");
 
     }
 
@@ -44,7 +44,7 @@ function SummaryConversation(props) {
                                         <span style={{fontSize:"120%", marginLeft:"5px"}}>{props.name}</span>
                                     </div>
                                     <div className="col-4">
-                                        <span className="dateOnSummery" >{props.lastTime}</span>
+                                        <span className="dateOnSummery" >{props.lastdate}</span>
                                     </div>
                                     </div>
                             </div>

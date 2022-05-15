@@ -25,8 +25,8 @@ function Btn(props) {
                 let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
                 for (let i = 0; i < users[props.id].chats.length; i++) {
                     if (props.contact === users[props.id].chats[i].idc) {
-                        users[props.id].chats[i].lastMessage = "img";
-                        users[props.id].chats[i].lastTime = time + ' ' + date;
+                        users[props.id].chats[i].last = "img";
+                        users[props.id].chats[i].lastdata = time + ' ' + date;
                         users[props.id].chats[i].text.push({
                             txt: path,
                             time: time + " " + date,
@@ -59,8 +59,8 @@ function Btn(props) {
                 let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
                 for (let i = 0; i < users[props.id].chats.length; i++) {
                     if (props.contact === users[props.id].chats[i].idc) {
-                        users[props.id].chats[i].lastMessage = "video";
-                        users[props.id].chats[i].lastTime = time + ' ' + date;
+                        users[props.id].chats[i].last = "video";
+                        users[props.id].chats[i].lastdate = time + ' ' + date;
                         users[props.id].chats[i].text.push({
                             txt: path,
                             time: time + " " + date,
@@ -92,8 +92,8 @@ function Btn(props) {
                 let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
                 for (let i = 0; i < users[props.id].chats.length; i++) {
                     if (props.contact === users[props.id].chats[i].idc) {
-                        users[props.id].chats[i].lastMessage = "audio";
-                        users[props.id].chats[i].lastTime = time + ' ' + date;
+                        users[props.id].chats[i].last = "audio";
+                        users[props.id].chats[i].lastdate = time + ' ' + date;
                         users[props.id].chats[i].text.push({
                             txt: path,
                             time: time + " " + date,
@@ -122,8 +122,8 @@ function Btn(props) {
         let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
         for (let i = 0; i < users[props.id].chats.length; i++) {
             if (props.contact === users[props.id].chats[i].idc) {
-                users[props.id].chats[i].lastMessage = currentText;
-                users[props.id].chats[i].lastTime = time + ' ' + date;
+                users[props.id].chats[i].last = currentText;
+                users[props.id].chats[i].lastdata = time + ' ' + date;
                 users[props.id].chats[i].text.push({
                     txt: currentText,
                     time: time + " " + date,
@@ -149,8 +149,8 @@ function Btn(props) {
         let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
         for (let i = 0; i < users[props.id].chats.length; i++) {
             if (props.contact === users[props.id].chats[i].idc) {
-                users[props.id].chats[i].lastMessage = "audio";
-                users[props.id].chats[i].lastTime = time + ' ' + date;
+                users[props.id].chats[i].last = "audio";
+                users[props.id].chats[i].lastdata = time + ' ' + date;
                 users[props.id].chats[i].text.push({
                     txt: srcRec,
                     time: time + " " + date,
@@ -175,8 +175,8 @@ function Btn(props) {
         let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
         for (let i = 0; i < users[props.id].chats.length; i++) {
             if (props.contact === users[props.id].chats[i].idc) {
-                users[props.id].chats[i].lastMessage = "video";
-                users[props.id].chats[i].lastTime = time + ' ' + date;
+                users[props.id].chats[i].last = "video";
+                users[props.id].chats[i].lastdata = time + ' ' + date;
                 users[props.id].chats[i].text.push({
                     txt: srcVid,
                     time: time + " " + date,

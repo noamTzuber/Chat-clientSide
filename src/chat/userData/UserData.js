@@ -41,7 +41,7 @@ function UserData(props) {
             document.getElementById("addUserErrorMessage").innerHTML = "the user already exist";
         }
         else if(exist && !onMyContacts && contactName !== users[props.id].id){
-            users[props.id].chats.push({idc: contactName,name: users[i].name, img: users[i].profilePic, lastMessage: "", lastTime: "", text: []})
+            users[props.id].chats.push({idc: contactName,name: users[i].name, img: users[i].profilePic, last: "", lastdate: "", text: []})
             props.setContacts(users[props.id].chats.concat([]))
             document.getElementById("closeButtonModal").click();
 
