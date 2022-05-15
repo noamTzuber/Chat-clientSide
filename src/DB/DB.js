@@ -5,7 +5,7 @@ export const users = [{
     profilePic: "harry.jpg",
     chats: [
         {
-            contact: 'Malfoy',
+            idc: 'Malfoy',
             name: 'Malfoy',
             img: "malfoy.jpg",
             lastMessage: 'no way!',
@@ -14,7 +14,7 @@ export const users = [{
             {txt: "no way!", isIncoming: 0 , time: "18:32 13.04.22",type:"txt"}]
         },
         {
-            contact: 'Hermione',
+            idc: 'Hermione',
             name: 'Hermione',
             img: "hermione.jpg",
             lastMessage: 'image',
@@ -23,7 +23,7 @@ export const users = [{
             ]
         },
         {
-            contact: 'Ron',
+            idc: 'Ron',
             name: 'Weasley',
             img: "ron.jpg",
             lastMessage: 'audio',
@@ -32,7 +32,7 @@ export const users = [{
             ]
         },
         {
-            contact: 'Dumbledore',
+            idc: 'Dumbledore',
             name: 'Dumbush',
             img: "dumbledore.jpg",
             lastMessage: 'You are a wizard Harry!',
@@ -40,7 +40,7 @@ export const users = [{
             text: [{txt: 'You are a wizard Harry!', isIncoming: 1, time: "10:24 13.04.22", type:"txt"}]
         },
         {
-            contact: 'Voldemort',
+            idc: 'Voldemort',
             name: 'Tom',
             img: "voldemort.jpeg",
             lastMessage: 'video',
@@ -55,7 +55,7 @@ export const users = [{
     profilePic: "ron.jpg",
     chats: [
     {
-        contact: 'harry',
+        idc: 'harry',
         name: 'potter',
         img: "harry.jpg",
         lastMessage: 'Hey my name is noam',

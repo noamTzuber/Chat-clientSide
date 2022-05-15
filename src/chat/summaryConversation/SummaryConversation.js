@@ -8,7 +8,7 @@ function SummaryConversation(props) {
     }
     var showConversation = function (contact) {
         for (let i = 0; i < users[props.id].chats.length; i++) {
-            if (contact === users[props.id].chats[i].contact) {
+            if (contact === users[props.id].chats[i].idc) {
                 props.setCurrentConversation(users[props.id].chats[i]);
             }
         }
@@ -30,7 +30,7 @@ function SummaryConversation(props) {
     return (
         <div>
             <div onClick={() => {
-                showConversation(props.contact)
+                showConversation(props.idc)
             }}>
                 <div className="list-group-item list-group-item-action">
                     <div className="row">

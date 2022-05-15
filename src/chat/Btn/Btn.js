@@ -24,7 +24,7 @@ function Btn(props) {
                 let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
                 let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
                 for (let i = 0; i < users[props.id].chats.length; i++) {
-                    if (props.contact === users[props.id].chats[i].contact) {
+                    if (props.contact === users[props.id].chats[i].idc) {
                         users[props.id].chats[i].lastMessage = "img";
                         users[props.id].chats[i].lastTime = time + ' ' + date;
                         users[props.id].chats[i].text.push({
@@ -58,7 +58,7 @@ function Btn(props) {
                 let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
                 let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
                 for (let i = 0; i < users[props.id].chats.length; i++) {
-                    if (props.contact === users[props.id].chats[i].contact) {
+                    if (props.contact === users[props.id].chats[i].idc) {
                         users[props.id].chats[i].lastMessage = "video";
                         users[props.id].chats[i].lastTime = time + ' ' + date;
                         users[props.id].chats[i].text.push({
@@ -91,7 +91,7 @@ function Btn(props) {
                 let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
                 let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
                 for (let i = 0; i < users[props.id].chats.length; i++) {
-                    if (props.contact === users[props.id].chats[i].contact) {
+                    if (props.contact === users[props.id].chats[i].idc) {
                         users[props.id].chats[i].lastMessage = "audio";
                         users[props.id].chats[i].lastTime = time + ' ' + date;
                         users[props.id].chats[i].text.push({
@@ -121,7 +121,7 @@ function Btn(props) {
         let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
         let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
         for (let i = 0; i < users[props.id].chats.length; i++) {
-            if (props.contact === users[props.id].chats[i].contact) {
+            if (props.contact === users[props.id].chats[i].idc) {
                 users[props.id].chats[i].lastMessage = currentText;
                 users[props.id].chats[i].lastTime = time + ' ' + date;
                 users[props.id].chats[i].text.push({
@@ -148,7 +148,7 @@ function Btn(props) {
         let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
         let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
         for (let i = 0; i < users[props.id].chats.length; i++) {
-            if (props.contact === users[props.id].chats[i].contact) {
+            if (props.contact === users[props.id].chats[i].idc) {
                 users[props.id].chats[i].lastMessage = "audio";
                 users[props.id].chats[i].lastTime = time + ' ' + date;
                 users[props.id].chats[i].text.push({
@@ -174,7 +174,7 @@ function Btn(props) {
         let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
         let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
         for (let i = 0; i < users[props.id].chats.length; i++) {
-            if (props.contact === users[props.id].chats[i].contact) {
+            if (props.contact === users[props.id].chats[i].idc) {
                 users[props.id].chats[i].lastMessage = "video";
                 users[props.id].chats[i].lastTime = time + ' ' + date;
                 users[props.id].chats[i].text.push({

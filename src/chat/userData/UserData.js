@@ -25,7 +25,7 @@ function UserData(props) {
         let onMyContacts = false;
 
         for(let j =0; j< users[props.id].chats.length;j++){
-            if(users[props.id].chats[j].contact === contactName){
+            if(users[props.id].chats[j].idc === contactName){
                 onMyContacts = true;
             }
         }
@@ -41,7 +41,7 @@ function UserData(props) {
             document.getElementById("addUserErrorMessage").innerHTML = "the user already exist";
         }
         else if(exist && !onMyContacts && contactName !== users[props.id].id){
-            users[props.id].chats.push({contact: contactName,name: users[i].name, img: users[i].profilePic, lastMessage: "", lastTime: "", text: []})
+            users[props.id].chats.push({idc: contactName,name: users[i].name, img: users[i].profilePic, lastMessage: "", lastTime: "", text: []})
             props.setContacts(users[props.id].chats.concat([]))
             document.getElementById("closeButtonModal").click();
 
