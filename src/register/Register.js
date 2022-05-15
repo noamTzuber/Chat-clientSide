@@ -11,7 +11,7 @@ function Register() {
 
         var newUserName = document.getElementById("userName").value;
         for (let i = 0; i < users.length; i++) {
-            if (newUserName === users[i].name)
+            if (newUserName === users[i].id)
                 errorMessage.innerHTML = "Username already exist<br>"
         }
         if (newUserName.length === 0) {
@@ -56,7 +56,7 @@ function Register() {
             fReader.onloadend = function (event) {
                 if (errorMessage.innerHTML === "") {
                     //push
-                    users.push({ name: newUserName, profilePic: event.target.result, nickName:newNickname, password: newPassword, chats: []})
+                    users.push({ id: newUserName, profilePic: event.target.result, nickName:newNickname, password: newPassword, chats: []})
                     navigate('/Chat', {state:{id: users.length-1}})
                 }
             }
