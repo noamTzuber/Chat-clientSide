@@ -11,11 +11,12 @@ import {useLocation} from 'react-router-dom'
 
 function Chat() {
     const {state} = useLocation();
-    const { id } = state; 
+    const { id } = state;
 
-    const [currentTalk, setCurrentTalk]= useState({idc:'',name:'',last:'',lastdate:'',text:[], img:''})
+
+    const [currentTalk, setCurrentTalk]= useState({id:0,user1:'', user2:'' ,Messages:[]})
     const [currentMessages, setCurrentMessages]= useState([])
-    const [contacts, setContacts] = useState(users[id].chats)
+    const [contacts, setContacts] = useState(users[id].contacts)
 
     const userList = contacts.map((users, key) => {
         return < SummaryConversation{...users}  setCurrentConversation={setCurrentTalk} id = {id} num ={key} key={key}/>

@@ -3,7 +3,7 @@ import users from "../../DB/DB";
 
 function Contact(props) {
     let p;
-    if(props.img ===""  ){
+    if(props.img ==="" ){
         return (
             <div className="contact">
                 <div style={{width:"70px", height:"70px"}}></div>

@@ -1,17 +1,26 @@
 import './SummaryConversation.css'
 import users from "../../DB/DB";
+import chats from "../../DB/Chats";
 
 // {name, lastTime, lastMessage, setCurrentConversation}
 function SummaryConversation(props) {
     function showBottomBar(){
 
     }
-    var showConversation = function (contact) {
-        for (let i = 0; i < users[props.id].chats.length; i++) {
-            if (contact === users[props.id].chats[i].idc) {
-                props.setCurrentConversation(users[props.id].chats[i]);
+    var showConversation = function (idc) {
+        for (let i = 0; i < chats.length; i++) {
+            if ((chats[i].user1 === users[props.id].id && chats[i].user2 === idc )||
+            (chats[i].user2 === users[props.id].id && chats[i].user1 === idc)) {
+                props.setCurrentConversation(chats[i]);
             }
         }
+
+
+//         for (let i = 0; i < users[props.id].contacts.length; i++) {
+//             if (contact === users[props.id].contacts[i].idc) {
+//                 props.setCurrentConversation(users[props.id].chats[i]);
+//             }
+//         }
         showBottomBar();
     }
     //const profilePic = require("../../DB/profilePictures/".concat("", users[0].chats[props.key].img));
@@ -26,7 +35,7 @@ function SummaryConversation(props) {
     }
 
 
-    var pic = require("../../DB/profilePictures/".concat("",users[props.id].chats[props.num].img));
+    var pic = require("../../DB/profilePictures/".concat("",users[props.id].contacts[props.num].img));
     return (
         <div>
             <div onClick={() => {

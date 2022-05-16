@@ -1,5 +1,6 @@
 import './Register.css'
 import {users} from "../DB/DB";
+
 import {useNavigate} from 'react-router-dom'
 
 function Register() {
@@ -50,19 +51,21 @@ function Register() {
         if(document.getElementById("uploadImageButten").value.length > 0){
             let img = document.getElementById("uploadImageButten");
             let imgURL = document.getElementById("uploadImageButten").value;
+            let server = document.getElementById("server").value;
             if (imgURL.length > 0) {
             let fReader = new FileReader()
             fReader.readAsDataURL(img.files[0])
             fReader.onloadend = function (event) {
                 if (errorMessage.innerHTML === "") {
                     //push
-                    users.push({ id: newUserName, profilePic: event.target.result, name:newNickname, password: newPassword, chats: []})
+                    users.push({ id: newUserName, profilePic: event.target.result,localhost:server, name:newNickname, password: newPassword, chats: [], contacts:[]})
+//                     users.push({ id: newUserName, profilePic: event.target.result, name:newNickname, password: newPassword, chats: []})
                     navigate('/Chat', {state:{id: users.length-1}})
                 }
             }
         }
         }else{
-            errorMessage.innerHTML += "the confirm password is not match<br>"
+            errorMessage.innerHTML += "Please upload profile picture<br>"
         }
 
         // if (errorMessage.innerHTML === "") {
@@ -112,10 +115,17 @@ function Register() {
                 <div className="fs-6">Confirm Password</div>
                 <input id='password-confirm' type="password" className="form-control" placeholder="Type your Password"/>
             </div>
+            <div className='inputAndTitle'>
+                <div className="fs-6">Server</div>
+                <input id='server' type="text" className="form-control" placeholder="Type your Server"/>
+            </div>
+
+
             <div id='picterUpload' style={{marginLeft: '22%'}}>
                 <div className="fs-6">Upload profile picture</div>
                 <input id = "uploadImageButten" type="file" accept="image/*"/>
             </div>
+
 
             <button id='loginButton' className="btn btn-primary" type="button" onClick={validation}
                     style={{marginTop: "3%"}}>Register

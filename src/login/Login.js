@@ -11,7 +11,7 @@ function Login() {
 
         let userExist = 0;
         for (var i = 0; i < users.length; i++)
-            if(users[i].id === name && users[i].password ===password){
+            if(users[i].id === name && users[i].password === password){
                 userExist =1;
                 break;
             }

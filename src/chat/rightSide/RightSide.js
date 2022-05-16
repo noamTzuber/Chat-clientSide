@@ -5,17 +5,22 @@ import Outgoing from "../message/Outgoing";
 import IncomingMessage from "../message/IncomingMassege";
 
 function RightSide(props) {
-
+    function chooseName(){
+        if(props.currentConversation.user1 === users[props.id].id){
+            return props.currentConversation.user2;
+        }
+        return props.currentConversation.user1;
+    }
 
     return (
         <div className="right-container" >
             <div className="section">
                 <div className="content">
-                    <Contact name={props.currentConversation.name} img = {props.currentConversation.img} />
+                    <Contact name={chooseName()} img = {"ron.jpg"} />
                 </div>
                 <div className='scrollable-content content' style={{backgroundColor: "rgb(194 190 190 / 42%)"}}>
 
-                    {props.currentConversation.text.map((src, key ) => {
+                    {props.currentConversation.Messages.map((src, key ) => {
 
                         if (src.sent === false) {
                             return <Outgoing {...src} key={key}/>
