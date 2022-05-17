@@ -31,7 +31,7 @@ function RightSide(props) {
                 </div>
             </div>
             <div className="content">
-                <Btn setLast ={props.setContact} set={props.setMessages} contact={props.currentConversation.idc} id = {props.id}/>
+                <Btn setContact ={props.setContact} setMessages={props.setMessages} currentConversation={props.currentConversation} id = {props.id}/>
             </div>
         </div>
     )

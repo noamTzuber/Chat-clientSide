@@ -4,135 +4,154 @@ import chats from "../../DB/Chats";
 import RecordAudio from "./RecordAudio";
 import React, { useState } from "react";
 import VideoRecord from "./VideoRecord";
+import contact from "../Contact/Contact";
 
 function Btn(props) {
+    function chooseContact(){
+        if(props.currentConversation.user1 === users[props.id].id){
+            return props.currentConversation.user2;
+        }
+        return props.currentConversation.user1;
+    }
 
-
-
-
+    const contact = chooseContact();
     const [srcRec, setSrcRec] = useState('')
     const [srcVid, setSrcVid] = useState('')
 
     function uploadImg() {
-        let img = document.getElementById("img_submit");
-        let imgURL = document.getElementById("img_submit").value;
-        if (imgURL.length > 0) {
-            let fReader = new FileReader()
-            fReader.readAsDataURL(img.files[0])
-            fReader.onloadend = function (event) {
-                var path = event.target.result;
-                var d = new Date();
-                let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
-                let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
-                for (let i = 0; i < users[props.id].chats.length; i++) {
-                    if (props.contact === users[props.id].chats[i].idc) {
-                        users[props.id].chats[i].last = "img";
-                        users[props.id].chats[i].lastdata = time + ' ' + date;
-                        users[props.id].chats[i].text.push({
-                            content: path,
-                            created: time + " " + date,
-                            sent: false,
-                           // type: "img"
-                        });
-                        props.set(users[props.id].chats[i].text.concat([]));
-                        props.setLast(users[props.id].chats.concat([]));
-                    }
-                }
-            }
-            document.getElementById("closeButtonImgModal").click();
-
-        }
-        img.value = "";
+        // let img = document.getElementById("img_submit");
+        // let imgURL = document.getElementById("img_submit").value;
+        // if (imgURL.length > 0) {
+        //     let fReader = new FileReader()
+        //     fReader.readAsDataURL(img.files[0])
+        //     fReader.onloadend = function (event) {
+        //         var path = event.target.result;
+        //         var d = new Date();
+        //         let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
+        //         let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+        //         for (let i = 0; i < users[props.id].chats.length; i++) {
+        //             if (props.contact === users[props.id].chats[i].idc) {
+        //                 users[props.id].chats[i].last = "img";
+        //                 users[props.id].chats[i].lastdata = time + ' ' + date;
+        //                 users[props.id].chats[i].text.push({
+        //                     content: path,
+        //                     created: time + " " + date,
+        //                     sent: false,
+        //                    // type: "img"
+        //                 });
+        //                 props.set(users[props.id].chats[i].text.concat([]));
+        //                 props.setLast(users[props.id].chats.concat([]));
+        //             }
+        //         }
+        //     }
+        //     document.getElementById("closeButtonImgModal").click();
+        //
+        // }
+        // img.value = "";
     }
 
     function uploadVid() {
-        let vid = document.getElementById("vid_submit");
-        let vidURL = document.getElementById("vid_submit").value;
-        if (vidURL.length > 0) {
-            let fReader = new FileReader()
-            fReader.readAsDataURL(vid.files[0])
-            fReader.onloadend = function (event) {
-                var path = event.target.result;
-                console.log(path);
-
-                var d = new Date();
-                let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
-                let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
-                for (let i = 0; i < users[props.id].chats.length; i++) {
-                    if (props.contact === users[props.id].chats[i].idc) {
-                        users[props.id].chats[i].last = "video";
-                        users[props.id].chats[i].lastdate = time + ' ' + date;
-                        users[props.id].chats[i].text.push({
-                            content: path,
-                            created: time + " " + date,
-                            sent: false,
-                            //type: "video"
-                        });
-                        props.set(users[props.id].chats[i].text.concat([]));
-                        props.setLast(users[props.id].chats.concat([]));
-                    }
-                }
-            }
-            document.getElementById("closeVidModal").click();
-
-        }
-        vid.value = "";
+        // let vid = document.getElementById("vid_submit");
+        // let vidURL = document.getElementById("vid_submit").value;
+        // if (vidURL.length > 0) {
+        //     let fReader = new FileReader()
+        //     fReader.readAsDataURL(vid.files[0])
+        //     fReader.onloadend = function (event) {
+        //         var path = event.target.result;
+        //         console.log(path);
+        //
+        //         var d = new Date();
+        //         let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
+        //         let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+        //         for (let i = 0; i < users[props.id].chats.length; i++) {
+        //             if (props.contact === users[props.id].chats[i].idc) {
+        //                 users[props.id].chats[i].last = "video";
+        //                 users[props.id].chats[i].lastdate = time + ' ' + date;
+        //                 users[props.id].chats[i].text.push({
+        //                     content: path,
+        //                     created: time + " " + date,
+        //                     sent: false,
+        //                     //type: "video"
+        //                 });
+        //                 props.set(users[props.id].chats[i].text.concat([]));
+        //                 props.setLast(users[props.id].chats.concat([]));
+        //             }
+        //         }
+        //     }
+        //     document.getElementById("closeVidModal").click();
+        //
+        // }
+        // vid.value = "";
     }
 
     function uploadRecord() {
-        let audio = document.getElementById("audio_submit");
-        let audioURL = document.getElementById("audio_submit").value;
-        if (audioURL.length > 0) {
-            let fReader = new FileReader()
-            fReader.readAsDataURL(audio.files[0])
-            fReader.onloadend = function (event) {
-                var path = event.target.result;
-
-                var d = new Date();
-                let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
-                let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
-                for (let i = 0; i < users[props.id].chats.length; i++) {
-                    if (props.contact === users[props.id].chats[i].idc) {
-                        users[props.id].chats[i].last = "audio";
-                        users[props.id].chats[i].lastdate = time + ' ' + date;
-                        users[props.id].chats[i].text.push({
-                            content: path,
-                            created: time + " " + date,
-                            sent: false,
-                          //  type: "audio"
-                        });
-                        props.set(users[props.id].chats[i].text.concat([]));
-                        props.setLast(users[props.id].chats.concat([]));
-                    }
-                }
-            }
-            document.getElementById("closeRecordModal").click();
-
-        }
-        audio.value = "";
+        // let audio = document.getElementById("audio_submit");
+        // let audioURL = document.getElementById("audio_submit").value;
+        // if (audioURL.length > 0) {
+        //     let fReader = new FileReader()
+        //     fReader.readAsDataURL(audio.files[0])
+        //     fReader.onloadend = function (event) {
+        //         var path = event.target.result;
+        //
+        //         var d = new Date();
+        //         let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
+        //         let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+        //         for (let i = 0; i < users[props.id].chats.length; i++) {
+        //             if (props.contact === users[props.id].chats[i].idc) {
+        //                 users[props.id].chats[i].last = "audio";
+        //                 users[props.id].chats[i].lastdate = time + ' ' + date;
+        //                 users[props.id].chats[i].text.push({
+        //                     content: path,
+        //                     created: time + " " + date,
+        //                     sent: false,
+        //                   //  type: "audio"
+        //                 });
+        //                 props.set(users[props.id].chats[i].text.concat([]));
+        //                 props.setLast(users[props.id].chats.concat([]));
+        //             }
+        //         }
+        //     }
+        //     document.getElementById("closeRecordModal").click();
+        //
+        // }
+        // audio.value = "";
     }
 
 
     function send() {
+
+        console.log(contact);
         let currentText = document.getElementById("current-text").value;
         if (currentText === '') {
             return;
         }
+
         var d = new Date();
         let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
         let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
-        for (let i = 0; i < users[props.id].chats.length; i++) {
-            if (props.contact === users[props.id].chats[i].idc) {
-                users[props.id].chats[i].last = currentText;
-                users[props.id].chats[i].lastdata = time + ' ' + date;
-                users[props.id].chats[i].text.push({
+        for (let i = 0; i <chats.length; i++) {
+
+
+
+            if ((contact === chats[i].user1 && users[props.id].id === chats[i].user2) ||
+                (contact === chats[i].user2 && users[props.id].id === chats[i].user1)) {
+                console.log(chats[i]);
+                for (var j = 0; j < users[props.id].contacts.length; j++) {
+                     if( users[props.id].contacts[j].idc === contact) {
+                         users[props.id].contacts[j].last = currentText;
+                         users[props.id].contacts[j].lastdata = time + ' ' + date;
+                     }
+                }
+                chats[i].Messages.push({
                     content: currentText,
                     created: time + " " + date,
                     sent: false,
                     //type: type
                 });
-                props.set(users[props.id].chats[i].text.concat([]));
-                props.setLast(users[props.id].chats.concat([]));
+                props.setContact(users[props.id].contacts.concat([]));
+                //props.setMessages(users[props.id].chats[i].text.concat([]));
+                // props.setContact(chats[i].Messages.concat([]));
+
 
             }
         }
@@ -141,60 +160,60 @@ function Btn(props) {
     }
 
     function sendAudio() {
-        // let currentText = document.getElementById("audioMes").value;
-        if (srcRec === '') {
-            return;
-        }
-        var d = new Date();
-        let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
-        let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
-        for (let i = 0; i < users[props.id].chats.length; i++) {
-            if (props.contact === users[props.id].chats[i].idc) {
-                users[props.id].chats[i].last = "audio";
-                users[props.id].chats[i].lastdata = time + ' ' + date;
-                users[props.id].chats[i].text.push({
-                    content: srcRec,
-                    created: time + " " + date,
-                    sent: false,
-                   // type: "audio"
-                });
-                props.set(users[props.id].chats[i].text.concat([]));
-                props.setLast(users[props.id].chats.concat([]));
-                document.getElementById("closeRecordModal").click()
-            }
-        }
-        setSrcRec("");
+        // // let currentText = document.getElementById("audioMes").value;
+        // if (srcRec === '') {
+        //     return;
+        // }
+        // var d = new Date();
+        // let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
+        // let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+        // for (let i = 0; i < users[props.id].chats.length; i++) {
+        //     if (props.contact === users[props.id].chats[i].idc) {
+        //         users[props.id].chats[i].last = "audio";
+        //         users[props.id].chats[i].lastdata = time + ' ' + date;
+        //         users[props.id].chats[i].text.push({
+        //             content: srcRec,
+        //             created: time + " " + date,
+        //             sent: false,
+        //            // type: "audio"
+        //         });
+        //         props.set(users[props.id].chats[i].text.concat([]));
+        //         props.setLast(users[props.id].chats.concat([]));
+        //         document.getElementById("closeRecordModal").click()
+        //     }
+        // }
+        // setSrcRec("");
 
     }
 
     function sendVid() {// let currentText = document.getElementById("audioMes").value;
-        if (srcVid === '') {
-            return;
-        }
-        var d = new Date();
-        let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
-        let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
-        for (let i = 0; i < users[props.id].chats.length; i++) {
-            if (props.contact === users[props.id].chats[i].idc) {
-                users[props.id].chats[i].last = "video";
-                users[props.id].chats[i].lastdata = time + ' ' + date;
-                users[props.id].chats[i].text.push({
-                    content: srcVid,
-                    created: time + " " + date,
-                    sent: false,
-                  //  type: "video"
-                });
-                props.set(users[props.id].chats[i].text.concat([]));
-                props.setLast(users[props.id].chats.concat([]));
-
-            }
-        }
-        setSrcVid("");
+        // if (srcVid === '') {
+        //     return;
+        // }
+        // var d = new Date();
+        // let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
+        // let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+        // for (let i = 0; i < users[props.id].chats.length; i++) {
+        //     if (props.contact === users[props.id].chats[i].idc) {
+        //         users[props.id].chats[i].last = "video";
+        //         users[props.id].chats[i].lastdata = time + ' ' + date;
+        //         users[props.id].chats[i].text.push({
+        //             content: srcVid,
+        //             created: time + " " + date,
+        //             sent: false,
+        //           //  type: "video"
+        //         });
+        //         props.set(users[props.id].chats[i].text.concat([]));
+        //         props.setLast(users[props.id].chats.concat([]));
+        //
+        //     }
+        // }
+        // setSrcVid("");
 
     }
 
     
-    if(props.contact == ''){
+    if(contact == ''){
         return(
         <div className='bottom-bar' style={{backgroundColor: "rgb(194 190 190 / 42%)"}}>
             <div className="input-group">

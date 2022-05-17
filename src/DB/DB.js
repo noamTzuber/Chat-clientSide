@@ -5,47 +5,48 @@ export const users = [{
     id: 'harry',
     name: 'potter',
     password: 'harry1234',
-    server:"localhost1234",
+    server: "localhost1234",
     profilePic: "harry.jpg",
-    contacts:[{
-              idc: 'Malfoy',
-              name: 'Malfoy',
-              img: "malfoy.jpg",
-              server:"localhost1234",
-              last: 'no way!',
-              lastdate: '18:32 13.04.22',
-              },
+    contacts: [{
+        idc: 'Malfoy',
+        name: 'Malfoy',
+        img: "malfoy.jpg",
+        server: "localhost1234",
+        last: 'no way!',
+        lastdate: '18:32 13.04.22',
+    },
 
-              {
-              idc: 'Ron',
-                          name: 'Ron',
-                          img: "ron.jpg",
-                          server:"localhost1234",
-                          last: 'no way!',
-                          lastdate: '18:32 13.04.22',
-              }],
-
-    chats: [
         {
-            idc: 'Malfoy',
-            name: 'Malfoy',
-            img: "malfoy.jpg",
+            idc: 'Ron',
+            name: 'Ron',
+            img: "ron.jpg",
+            server: "localhost1234",
             last: 'no way!',
             lastdate: '18:32 13.04.22',
-            text: [{content: 'Hey Potter! Want to join Slytherin?', sent: true, created: "18:29 13.04.22"}]
+        }]
 
-
-
-
-        },
-        {
-        idc: 'Ron',
-                    name: 'Ron',
-                    img: "ron.jpg",
-                    last: 'no way!',
-                    lastdate: '18:32 13.04.22',
-                    text: [{content: 'Hey Ron! Want to join Ron?', sent: true, created: "18:29 13.04.22"}]
-        }]}]
+    // chats: [
+    //     {
+    //         idc: 'Malfoy',
+    //         name: 'Malfoy',
+    //         img: "malfoy.jpg",
+    //         last: 'no way!',
+    //         lastdate: '18:32 13.04.22',
+    //         text: [{content: 'Hey Potter! Want to join Slytherin?', sent: true, created: "18:29 13.04.22"}]
+    //
+    //
+    //
+    //
+    //     },
+    //     {
+    //     idc: 'Ron',
+    //                 name: 'Ron',
+    //                 img: "ron.jpg",
+    //                 last: 'no way!',
+    //                 lastdate: '18:32 13.04.22',
+    //                 text: [{content: 'Hey Ron! Want to join Ron?', sent: true, created: "18:29 13.04.22"}]
+    //     }]}
+}]
 //         ,
 //         {
 //             idc: 'Hermione',
