@@ -6,13 +6,13 @@ import chats from "../../DB/Chats";
 
 function UserData(props) {
 
-    
+
     var profilePic;
-    if(users[props.id].profilePic.length > 50){
-         profilePic = users[props.id].profilePic;
-    }else{
-        profilePic = require("../../DB/profilePictures/".concat("", users[props.id].profilePic));
-    }
+    // if(users[props.id].profilePic.length > 50){
+    //      profilePic = users[props.id].profilePic;
+    // }else{
+    profilePic = require("../../DB/profilePictures/diff.jpg");
+//}
 
     var nickname = users[props.id].name;
 
@@ -44,7 +44,7 @@ function UserData(props) {
             document.getElementById("addUserErrorMessage").innerHTML = "the user already exist";
         }
         else if(exist && !onMyContacts && contactName !== users[props.id].id){
-            users[props.id].contacts.push({idc: contactName,name: contactName, img: users[i].profilePic, last: "", lastdate: ""})
+            users[props.id].contacts.push({idc: contactName,name: contactName, last: "", lastdate: ""})
             props.setContacts(users[props.id].contacts.concat([]));
             chats.push({id:chats.length+1, user1: users[props.id].id,user2:contactName,Messages: []})
             chats.concat([]);

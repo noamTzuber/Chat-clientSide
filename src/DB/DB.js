@@ -4,12 +4,11 @@ export const users = [{
     name: 'potter',
     password: 'harry1234',
     server: "localhost1234",
-    profilePic: "harry.jpg",
+
 
     contacts: [{
         idc: 'Malfoy',
         name: 'Malfoy',
-        img: "malfoy.jpg",
         server: "localhost1234",
         last: 'no way!',
         lastdate: '18:32 13.04.22',
@@ -18,7 +17,6 @@ export const users = [{
         {
             idc: 'Ron',
             name: 'Ron',
-            img: "ron.jpg",
             server: "localhost1234",
             last: 'no way!',
             lastdate: '18:32 13.04.22',
@@ -30,8 +28,6 @@ export const users = [{
     name: 'potter',
     password: 'harry1234',
     server: "localhost1234",
-    profilePic: "harry.jpg",
-
     contacts: []
     }
     ]

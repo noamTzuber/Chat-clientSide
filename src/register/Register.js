@@ -49,24 +49,24 @@ function Register() {
         }
 
         if(document.getElementById("uploadImageButten").value.length > 0){
-            let img = document.getElementById("uploadImageButten");
-            let imgURL = document.getElementById("uploadImageButten").value;
+            // let img = document.getElementById("uploadImageButten");
+            // let imgURL = document.getElementById("uploadImageButten").value;
             let server = document.getElementById("server").value;
-            if (imgURL.length > 0) {
-            let fReader = new FileReader()
-            fReader.readAsDataURL(img.files[0])
-            fReader.onloadend = function (event) {
+            // if (imgURL.length > 0) {
+            // let fReader = new FileReader()
+            // fReader.readAsDataURL(img.files[0])
+            // fReader.onloadend = function (event) {
                 if (errorMessage.innerHTML === "") {
                     //push
-                    users.push({ id: newUserName, profilePic: event.target.result,localhost:server, name:newNickname, password: newPassword, chats: [], contacts:[]})
+                    users.push({ id: newUserName,localhost:server, name:newNickname, password: newPassword, chats: [], contacts:[]})
 //                     users.push({ id: newUserName, profilePic: event.target.result, name:newNickname, password: newPassword, chats: []})
                     navigate('/Chat', {state:{id: users.length-1}})
                 }
             }
-        }
-        }else{
-            errorMessage.innerHTML += "Please upload profile picture<br>"
-        }
+
+        // }else{
+        //     errorMessage.innerHTML += "Please upload profile picture<br>"
+        // }
 
         // if (errorMessage.innerHTML === "") {
         //     //push

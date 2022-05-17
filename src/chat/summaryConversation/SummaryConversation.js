@@ -36,7 +36,7 @@ function SummaryConversation(props) {
     }
 
 
-    var pic = require("../../DB/profilePictures/".concat("",users[props.id].contacts[props.num].img));
+    var pic = require("../../DB/profilePictures/diff.jpg");
     return (
         <div>
             <div onClick={() => {
