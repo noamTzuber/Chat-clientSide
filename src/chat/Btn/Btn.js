@@ -120,7 +120,6 @@ function Btn(props) {
 
     function send() {
 
-        console.log(contact);
         let currentText = document.getElementById("current-text").value;
         if (currentText === '') {
             return;
@@ -135,7 +134,6 @@ function Btn(props) {
 
             if ((contact === chats[i].user1 && users[props.id].id === chats[i].user2) ||
                 (contact === chats[i].user2 && users[props.id].id === chats[i].user1)) {
-                console.log(chats[i]);
                 for (var j = 0; j < users[props.id].contacts.length; j++) {
                      if( users[props.id].contacts[j].idc === contact) {
                          users[props.id].contacts[j].last = currentText;
