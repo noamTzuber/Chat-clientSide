@@ -26,7 +26,6 @@ function SummaryConversation(props) {
     //const profilePic = require("../../DB/profilePictures/".concat("", users[0].chats[props.key].img));
 
     function shortLastMessage(){
-        console.log(props.last);
         let maxSize = 25;
         if(props.last.length < maxSize){
             return props.last;
