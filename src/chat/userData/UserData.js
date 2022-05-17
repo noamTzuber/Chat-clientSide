@@ -1,6 +1,7 @@
 import './UserData.css'
 import React from "react";
 import users from "../../DB/DB";
+import chats from "../../DB/Chats";
 
 
 function UserData(props) {
@@ -24,12 +25,14 @@ function UserData(props) {
         let exist = false;
         let onMyContacts = false;
 
-        for(let j =0; j< users[props.id].chats.length;j++){
-            if(users[props.id].chats[j].idc === contactName){
+        // check if the contact name already in my contact list
+        for(let j =0; j< users[props.id].contacts.length;j++){
+            if(users[props.id].contacts[j].idc === contactName){
                 onMyContacts = true;
             }
         }
 
+        // check if there is  exist match user
         for(var i = 0; i < users.length;i++){
             if (users[i].id === contactName){
                 exist = true;
@@ -41,8 +44,12 @@ function UserData(props) {
             document.getElementById("addUserErrorMessage").innerHTML = "the user already exist";
         }
         else if(exist && !onMyContacts && contactName !== users[props.id].id){
-            users[props.id].chats.push({idc: contactName,name: users[i].name, img: users[i].profilePic, last: "", lastdate: "", text: []})
-            props.setContacts(users[props.id].chats.concat([]))
+            users[props.id].contacts.push({idc: contactName,name: contactName, img: users[i].profilePic, last: "", lastdate: ""})
+            props.setContacts(users[props.id].contacts.concat([]));
+            chats.push({id:chats.length+1, user1: users[props.id].id,user2:contactName,Messages: []})
+            chats.concat([]);
+
+
             document.getElementById("closeButtonModal").click();
 
         } else{

@@ -24,5 +24,15 @@ export const users = [{
             lastdate: '18:32 13.04.22',
         }]
 
-}]
+    },
+    {
+    id: 'noam',
+    name: 'potter',
+    password: 'harry1234',
+    server: "localhost1234",
+    profilePic: "harry.jpg",
+
+    contacts: []
+    }
+    ]
 export default users
