@@ -12,6 +12,21 @@ function RightSide(props) {
         return props.currentConversation.user1;
     }
 
+    function getMessages(){
+        var contactId = chooseName();
+        var userId = users[props.id].id
+        console.log(props.myChats);
+
+        for(let i = 0 ; i < props.myChats.length; i++){
+            console.log(props.myChats[i]);
+            if(props.myChats[i].user1 === contactId && props.myChats[i].user2 === userId  ||
+                props.myChats[i].user2 === contactId && props.myChats[i].user1 === userId ){
+                    return props.myChats[i].messages;
+                }
+        }
+        return [];
+    }
+
     return (
         <div className="right-container" >
             <div className="section">
@@ -20,8 +35,8 @@ function RightSide(props) {
                 </div>
                 <div className='scrollable-content content' style={{backgroundColor: "rgb(194 190 190 / 42%)"}}>
 
-                    {props.currentConversation.Messages.map((src, key ) => {
-
+                    {  
+                        getMessages().map((src, key ) => {
                         if (src.sent === false) {
                             return <Outgoing {...src} key={key}/>
                         }

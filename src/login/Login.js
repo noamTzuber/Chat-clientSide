@@ -1,10 +1,42 @@
 import './Login.css'
-import {users} from "../DB/DB";
 import {useNavigate} from 'react-router-dom'
+import { useState, useEffect } from "react";
+import axios from 'axios';
+
+
+async function getAllUsers(onReply) {
+    await fetch("https://localhost:1234/api/Contact/AllUsers")
+    .then(response => response.json())
+    .then(data => {
+        // onReply(data);
+        onReply(data);
+    });
+}
+
 
 function Login() {
+    const [allUsers, setAllUsers] = useState([])
+    async function getUsers(){
+            const res = await fetch("https://localhost:1234/api/Contact/AllUsers");
+            const data = await res.json();
+            setAllUsers(data)
+        }
+
+
+
+    // async function getAllUsers(){
+    //     const axios = require('axios');
+    //     const res = await axios.get("https://localhost:1234/api/Contact/AllUsers").then(resp=>{setAllUsers(resp.data)});
+
+    // }
+
+    
+
     const navigate = useNavigate()
-    function varifyLogin() {
+
+    async function varifyLogin(users) {
+        console.log(users)
+
         var errorMessage = document.getElementById("errorMessage");
         var name = document.getElementById("username").value;
         var password = document.getElementById("password").value;
@@ -41,7 +73,7 @@ function Login() {
                        aria-label="Email" aria-describedby="basic-addon1"/>
             </div>
 
-            <button id='loginButton' className="btn btn-primary" type="button" onClick={varifyLogin}>Login</button>
+            <button id='loginButton' className="btn btn-primary" type="button" onClick={() => {getAllUsers(varifyLogin)}}>Login</button>
 
             <div id="errorMessage"></div>
 

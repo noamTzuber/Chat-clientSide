@@ -15,16 +15,42 @@ import { useLocation } from 'react-router-dom';
 
 
 function Chat() {
+    const [myChats, setMyChats] = useState([]);
+
+    const getChats = async function() {
+        await fetch("https://localhost:1234/api/Contact/Chats")
+            .then(response => response.json())
+            .then(data => {
+                setMyChats(data);
+            });
+    }
+
+    useEffect(getChats, [1]);
+    // console.log(myChats);
+
+
+    const [myUser, setMyUser] = useState({id:'', name:'', password:'', server:'' ,contacts:[]});
+
+    const getUser = async function() {
+        await fetch("https://localhost:1234/api/Contact/User")
+            .then(response => response.json())
+            .then(data => {
+                setMyUser(data);
+            });
+    }
+
+    useEffect(getUser, [1]);
+    // console.log(myUser);
+
+
+
     const { state } = useLocation();
     const { id } = state;
-
-
+    
     const [currentTalk, setCurrentTalk] = useState({ id: 0, user1: '', user2: '', Messages: [] });
     const [currentMessages, setCurrentMessages] = useState([]);
-    const [contacts, setContacts] = useState(users[id].contacts);
+    const [contacts, setContacts] = useState([]);
 
-    const [user2, setUser2] = useState({ id: '', name: '', password: '', server: '', contacts: [] });
-    const [chats2, setChats2] = useState([])
 
    
     // async function post(){
@@ -36,21 +62,12 @@ function Chat() {
     //                 });
     
     // }
-    
-    async function get(){
-        const response = await axios.get("https://localhost:1234/api/Contact/Chats");
-        // setChats2(response.data);
-         
-    }
-    
-    get();
-    console.log(chats2);
+    // console.log(myUser);
 
+    // console.log(contacts)
     
-
-
-    const userList = contacts.map((users, key) => {
-        return < SummaryConversation{...users} setCurrentConversation={setCurrentTalk} id={id} num={key} key={key} />
+    const userList = myUser.contacts.map((contact, key) => {
+        return < SummaryConversation{...contact} setCurrentConversation={setCurrentTalk} myChats={myChats} userId={id} num={key} key={key} />
     });
 
     return (
@@ -73,7 +90,7 @@ function Chat() {
 
             <div className="col-9">
 
-                <RightSide setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages} id={id} />
+                <RightSide setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages} id={id} myChats = {myChats} />
             </div>
 
         </div>

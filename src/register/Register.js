@@ -1,12 +1,21 @@
 import './Register.css'
-import {users} from "../DB/DB";
+import axios from 'axios';
 
 import {useNavigate} from 'react-router-dom'
+
+
+async function getAllUsers(onReply) {
+    await fetch("https://localhost:1234/api/Contact/AllUsers")
+    .then(response => response.json())
+    .then(data => {
+        onReply(data);
+    });
+}
 
 function Register() {
     const navigate = useNavigate()
 
-    function validation() {
+    function validation(users) {
         var errorMessage = document.getElementById("error-message");
         errorMessage.innerHTML = ""
 
@@ -48,7 +57,7 @@ function Register() {
                 errorMessage.innerHTML += "the confirm password is not match<br>"
         }
 
-        if(document.getElementById("uploadImageButten").value.length > 0){
+        // if(document.getElementById("uploadImageButten").value.length > 0){
             // let img = document.getElementById("uploadImageButten");
             // let imgURL = document.getElementById("uploadImageButten").value;
             let server = document.getElementById("server").value;
@@ -58,11 +67,32 @@ function Register() {
             // fReader.onloadend = function (event) {
                 if (errorMessage.innerHTML === "") {
                     //push
-                    users.push({ id: newUserName,localhost:server, name:newNickname, password: newPassword, chats: [], contacts:[]})
-//                     users.push({ id: newUserName, profilePic: event.target.result, name:newNickname, password: newPassword, chats: []})
-                    navigate('/Chat', {state:{id: users.length-1}})
+                    console.log("here")
+
+
+                        const response =  axios.post("https://localhost:1234/api/Contact/User", 
+                        {
+                            id: newUserName,
+                            name: newNickname,
+                            password: newPassword,
+                            server: server,
+                            contacts: []
+                        }
+
+                        ).then(
+                            fetch("https://localhost:1234/api/Contact/AllUsers")
+                            .then(response => response.json())
+                            .then(data => {
+                                // console.log(data)
+                            })
+                        );
+                    
+                        
+    // }
+                    // users.push({ id: newUserName,localhost:server, name:newNickname, password: newPassword, chats: [], contacts:[]})
+                    navigate('/Chat', {state:{id:0}})
                 }
-            }
+            // }
 
         // }else{
         //     errorMessage.innerHTML += "Please upload profile picture<br>"
@@ -121,13 +151,10 @@ function Register() {
             </div>
 
 
-            <div id='picterUpload' style={{marginLeft: '22%'}}>
-                <div className="fs-6">Upload profile picture</div>
-                <input id = "uploadImageButten" type="file" accept="image/*"/>
-            </div>
+            
 
 
-            <button id='loginButton' className="btn btn-primary" type="button" onClick={validation}
+            <button id='loginButton' className="btn btn-primary" type="button" onClick={()=>{getAllUsers(validation)}}
                     style={{marginTop: "3%"}}>Register
             </button>
 

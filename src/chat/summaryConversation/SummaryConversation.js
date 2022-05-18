@@ -4,15 +4,18 @@ import chats from "../../DB/Chats";
 
 // {name, lastTime, lastMessage, setCurrentConversation}
 function SummaryConversation(props) {
-    function showBottomBar(){
 
-    }
-    var showConversation = function (idc) {
-        for (let i = 0; i < chats.length; i++) {
-            if ((chats[i].user1 === users[props.id].id && chats[i].user2 === idc )||
-            (chats[i].user2 === users[props.id].id && chats[i].user1 === idc)) {
-                props.setCurrentConversation(chats[i]);
+
+    var showConversation = function (id) {
+        console.log(props.myChats);
+        for (let i = 0; i < props.myChats.length; i++) {
+            // console.log(i)
+            if (( props.myChats[i].user1 === users[props.userId].id && props.myChats[i].user2 === id )||
+            (props.myChats[i].user2 === users[props.userId].id && props.myChats[i].user1 === id)) {
+                props.setCurrentConversation(props.myChats[i]);
             }
+            // console.log("the id of th euser is: " + users[props.userId].id )
+            // console.log(chats[i].user2, "?=" ,users[props.userId].id)
         }
 
 
@@ -21,7 +24,6 @@ function SummaryConversation(props) {
 //                 props.setCurrentConversation(users[props.id].chats[i]);
 //             }
 //         }
-        showBottomBar();
     }
     //const profilePic = require("../../DB/profilePictures/".concat("", users[0].chats[props.key].img));
 
@@ -39,7 +41,7 @@ function SummaryConversation(props) {
     return (
         <div>
             <div onClick={() => {
-                showConversation(props.idc)
+                showConversation(props.id)
             }}>
                 <div className="list-group-item list-group-item-action">
                     <div className="row">
