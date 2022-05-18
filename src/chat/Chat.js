@@ -15,61 +15,41 @@ import { useLocation } from 'react-router-dom';
 
 
 function Chat() {
+    const [myChats, setMyChats] = useState([]);
+
+    const getChats = async function() {
+        await fetch("https://localhost:1234/api/Contact/Chats")
+            .then(response => response.json())
+            .then(data => {
+                setMyChats(data);
+            });
+    }
+
+    useEffect(getChats, [1]);
+    // console.log(myChats);
+
+
+    const [myUser, setMyUser] = useState({id:'', name:'', password:'', server:'' ,contacts:[]});
+
+    const getUser = async function() {
+        await fetch("https://localhost:1234/api/Contact/User")
+            .then(response => response.json())
+            .then(data => {
+                setMyUser(data);
+            });
+    }
+
+    useEffect(getUser, [1]);
+    // console.log(myUser);
+
+
 
     const { state } = useLocation();
     const { id } = state;
     
-    const response = fetch("https://localhost:1234/api/Contact/AllUsers")
-    const data = response.data;
-    console.log(data);
-
-
-    // const [myChats, setMyChats] = useState([]);
-    // useEffect(async () =>{
-    //     const res = await fetch("https://localhost:1234/api/Contact/Chats");
-    //     const data = await res.json();
-    //     setMyChats(data);
-        
-    // },[])
-    
-
-
-    // const [myUser, setMyUser] = useState({ id: '', name: '', password: '', server: '', contacts: [] });
-    // useEffect(async () =>{
-    //     const res = await fetch("https://localhost:1234/api/Contact/User");
-    //     const data = await res.json();
-    //     setMyUser(data);
-    // },[])
-            // console.log(myUser.contacts);
-
-
-
-    // useEffect(async () =>{
-    //     await fetch("https://localhost:1234/api/Contact/User").then(response =>{
-    //         if(response.ok){
-    //             return response.json();
-    //         }
-    //     })
-    //     .then(data => {
-    //         setMyUser(data);
-    //     })
-    // },[])
-
-    // async function get(){
-    //     const res = await fetch("https://localhost:1234/api/Contact/User");
-    //     const data = await res.json();
-    //     setMyUser(data);
-    // }
-    // // get();
-    // console.log(myUser);
-
-
-    
-
     const [currentTalk, setCurrentTalk] = useState({ id: 0, user1: '', user2: '', Messages: [] });
     const [currentMessages, setCurrentMessages] = useState([]);
-    const [contacts, setContacts] = useState(users[id].contacts);
-
+    const [contacts, setContacts] = useState([]);
 
 
    
@@ -83,9 +63,11 @@ function Chat() {
     
     // }
     // console.log(myUser);
+
+    // console.log(contacts)
     
-    const userList = contacts.map((users, key) => {
-        return < SummaryConversation{...users} setCurrentConversation={setCurrentTalk} id={id} num={key} key={key} />
+    const userList = myUser.contacts.map((contact, key) => {
+        return < SummaryConversation{...contact} setCurrentConversation={setCurrentTalk} myChats={myChats} userId={id} num={key} key={key} />
     });
 
     return (
@@ -108,7 +90,7 @@ function Chat() {
 
             <div className="col-9">
 
-                <RightSide setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages} id={id} />
+                <RightSide setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages} id={id} myChats = {myChats} />
             </div>
 
         </div>
