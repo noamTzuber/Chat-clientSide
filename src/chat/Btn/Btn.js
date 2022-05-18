@@ -5,6 +5,7 @@ import RecordAudio from "./RecordAudio";
 import React, { useState } from "react";
 import VideoRecord from "./VideoRecord";
 import contact from "../Contact/Contact";
+import axios from "axios";
 
 function Btn(props) {
     function chooseContact(){
@@ -116,7 +117,14 @@ function Btn(props) {
         // }
         // audio.value = "";
     }
-
+    async function postMessages(currentText) {
+        console.log("https://localhost:1234/api/Contact/" + chooseContact() + "/messages");
+        const res = await axios.post("https://localhost:1234/api/Contact/" + chooseContact() + "/messages",
+            {
+                ConnectedId: props.myUser.id,
+                content: currentText
+            })
+    }
 
     function send() {
 
@@ -124,35 +132,38 @@ function Btn(props) {
         if (currentText === '') {
             return;
         }
-
-        var d = new Date();
-        let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
-        let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
-        for (let i = 0; i <chats.length; i++) {
+        postMessages(currentText);
 
 
 
-            if ((contact === chats[i].user1 && users[props.id].id === chats[i].user2) ||
-                (contact === chats[i].user2 && users[props.id].id === chats[i].user1)) {
-                for (var j = 0; j < users[props.id].contacts.length; j++) {
-                     if( users[props.id].contacts[j].idc === contact) {
-                         users[props.id].contacts[j].last = currentText;
-                         users[props.id].contacts[j].lastdata = time + ' ' + date;
-                     }
-                }
-                chats[i].Messages.push({
-                    content: currentText,
-                    created: time + " " + date,
-                    sent: false,
-                    //type: type
-                });
-                props.setContact(users[props.id].contacts.concat([]));
-                //props.setMessages(users[props.id].chats[i].text.concat([]));
-                // props.setContact(chats[i].Messages.concat([]));
-
-
-            }
-        }
+        // var d = new Date();
+        // let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
+        // let time = (d.getHours() < 10 ? '0' : '') + d.getHours() + ':' + (d.getMinutes() < 10 ? '0' : '') + d.getMinutes();
+        // for (let i = 0; i <chats.length; i++) {
+        //
+        //
+        //
+        //     if ((contact === chats[i].user1 && users[props.id].id === chats[i].user2) ||
+        //         (contact === chats[i].user2 && users[props.id].id === chats[i].user1)) {
+        //         for (var j = 0; j < users[props.id].contacts.length; j++) {
+        //              if( users[props.id].contacts[j].idc === contact) {
+        //                  users[props.id].contacts[j].last = currentText;
+        //                  users[props.id].contacts[j].lastdata = time + ' ' + date;
+        //              }
+        //         }
+        //         chats[i].Messages.push({
+        //             content: currentText,
+        //             created: time + " " + date,
+        //             sent: false,
+        //             //type: type
+        //         });
+        //         props.setContact(users[props.id].contacts.concat([]));
+        //         //props.setMessages(users[props.id].chats[i].text.concat([]));
+        //         // props.setContact(chats[i].Messages.concat([]));
+        //
+        //
+        //     }
+        // }
         document.getElementById('current-text').value = '';
 
     }
