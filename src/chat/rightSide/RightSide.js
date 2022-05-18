@@ -1,20 +1,40 @@
 import Contact from "../Contact/Contact";
 import Btn from "../Btn/Btn";
-import users from "../../DB/DB";
+
 import Outgoing from "../message/Outgoing";
 import IncomingMessage from "../message/IncomingMassege";
 
 function RightSide(props) {
-    function chooseName(){
-        if(props.currentConversation.user1 === users[props.id].id){
+    function findDestID(){
+        if(props.currentConversation.user1 === props.myUser.id){
             return props.currentConversation.user2;
         }
         return props.currentConversation.user1;
     }
+    function findDestNickName(){
+        var wantedId;
+        if(props.currentConversation.user1 === props.myUser.id){
+            wantedId= props.currentConversation.user2;
+        }
+        else {
+            wantedId = props.currentConversation.user1;
+        }
+
+        for(var i=0; i<props.myUser.contacts.length ; i++){
+            if(props.myUser.contacts[i].id===wantedId){
+                return props.myUser.contacts[i].name;
+            }
+
+
+    }
+        return '';
+
+    }
+
 
     function getMessages(){
-        var contactId = chooseName();
-        var userId = users[props.id].id
+        var contactId = findDestID();
+        var userId = props.myUser.id
         console.log(props.myChats);
 
         for(let i = 0 ; i < props.myChats.length; i++){
@@ -31,7 +51,7 @@ function RightSide(props) {
         <div className="right-container" >
             <div className="section">
                 <div className="content">
-                    <Contact name={chooseName()} />
+                    <Contact name={findDestNickName()} />
                 </div>
                 <div className='scrollable-content content' style={{backgroundColor: "rgb(194 190 190 / 42%)"}}>
 

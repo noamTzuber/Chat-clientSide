@@ -90,7 +90,7 @@ function Chat() {
 
             <div className="col-9">
 
-                <RightSide setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages} id={id} myChats = {myChats} />
+                <RightSide myUser={myUser} setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages} id={id} myChats = {myChats} />
             </div>
 
         </div>
