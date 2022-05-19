@@ -7,7 +7,6 @@ function SummaryConversation(props) {
 
 
     var showConversation = function (id) {
-        console.log(props.myChats);
         for (let i = 0; i < props.myChats.length; i++) {
             // console.log(i)
             if (( props.myChats[i].user1 === users[props.userId].id && props.myChats[i].user2 === id )||

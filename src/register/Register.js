@@ -67,7 +67,6 @@ function Register() {
             // fReader.onloadend = function (event) {
                 if (errorMessage.innerHTML === "") {
                     //push
-                    console.log("here")
 
 
                         const response =  axios.post("https://localhost:1234/api/Contact/User", 

@@ -35,7 +35,6 @@ function Login() {
     const navigate = useNavigate()
 
     async function varifyLogin(users) {
-        console.log(users)
 
         var errorMessage = document.getElementById("errorMessage");
         var name = document.getElementById("username").value;

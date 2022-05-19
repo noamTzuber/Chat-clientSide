@@ -118,13 +118,39 @@ function Btn(props) {
         // audio.value = "";
     }
     async function postMessages(currentText) {
-        console.log("https://localhost:1234/api/Contact/" + chooseContact() + "/messages");
         const res = await axios.post("https://localhost:1234/api/Contact/" + chooseContact() + "/messages",
             {
                 ConnectedId: props.myUser.id,
                 content: currentText
-            })
+            }).then(transferMessage(currentText))
     }
+
+
+    function chooseContactServer(){
+        let contactId = chooseContact();
+        for(let i = 0 ; i < props.myUser.contacts.length; i ++){
+            if(props.myUser.contacts[i].id === contactId){
+                return props.myUser.contacts[i].server
+            }
+        }
+    }
+
+    async function transferMessage(currentText) {
+        if(props.myUser.server !== chooseContactServer()){
+            const res = await axios.post("https://"+chooseContactServer +"/api/transfer/",
+            {
+                from: props.myUser.id,
+                to: currentText,
+                content: currentText
+            })
+        }
+
+        if(props.myUser.server === chooseContactServer()){
+            console.log("is equal");
+        }
+    }
+        
+        
 
     function send() {
 

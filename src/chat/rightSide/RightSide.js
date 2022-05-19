@@ -35,10 +35,8 @@ function RightSide(props) {
     function getMessages(){
         var contactId = findDestID();
         var userId = props.myUser.id
-        console.log(props.myChats);
 
         for(let i = 0 ; i < props.myChats.length; i++){
-            console.log(props.myChats[i]);
             if(props.myChats[i].user1 === contactId && props.myChats[i].user2 === userId  ||
                 props.myChats[i].user2 === contactId && props.myChats[i].user1 === userId ){
                     return props.myChats[i].messages;
