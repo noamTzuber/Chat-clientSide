@@ -20,9 +20,13 @@ function UserData(props) {
     async function addUser() {
         document.getElementById("addUserErrorMessage").innerHTML = "";
 
-
         var contactId = document.getElementById("inputAddUser").value;
+        var nickName = document.getElementById("inputAddNickName").value;
+        var server = document.getElementById("inputAddServer").value;
         document.getElementById("inputAddUser").value = '';
+        document.getElementById("inputAddNickName").value = '';
+        document.getElementById("inputAddServer").value = '';
+
         let exist = false;
         let onMyContacts = false;
 
@@ -33,20 +37,34 @@ function UserData(props) {
                 document.getElementById("addUserErrorMessage").innerHTML = "the user already exist"
             }
         }
-        if (!onMyContacts) {
-            await axios.post("https://localhost:1234/api/Contact/", {
-                connectedId: props.myUser.id,
-                id: contactId,
-                name: contactId,
-                server: " "
-            }).then((response) => {
-                 {
-                     document.getElementById("closeButtonModal").click();
-                }
-            })
-                .catch(response=>{
-                    document.getElementById("addUserErrorMessage").innerHTML = "Invalid UserName";
+        if(server === '' || nickName ===''|| contactId === ''){
+            document.getElementById("addUserErrorMessage").innerHTML = "please fill all the fields"
+
+        }
+        else if (!onMyContacts) {
+            await axios.post("https://"+server+"/api/invitations/",{
+                from:props.myUser.id,
+                to:contactId,
+                server:props.myUser.server
+            }).then(async (res) =>{
+                await axios.post("https://localhost:1234/api/Contact/", {
+                    connectedId: props.myUser.id,
+                    id: contactId,
+                    name: nickName,
+                    server: server
+                }).then((response) => {
+                    {
+                        document.getElementById("closeButtonModal").click();
+                    }
                 })
+                    .catch(response=>{
+                        document.getElementById("addUserErrorMessage").innerHTML = "Invalid UserName or Server";
+                    })
+
+
+            }).catch(res=>{
+                document.getElementById("addUserErrorMessage").innerHTML = "invitations not work";
+            })
 
 
         }
@@ -129,6 +147,14 @@ function UserData(props) {
                         <div className="modal-body">
                             <div className="input-group mb-3">
                                 <input id="inputAddUser" type="text" className="form-control" placeholder="username"
+                                       aria-label="username" aria-describedby="button-addon2"/>
+                                </div>
+                            <div className="input-group mb-3">
+                                <input id="inputAddNickName" type="text" className="form-control" placeholder="nickname"
+                                       aria-label="username" aria-describedby="button-addon2"/>
+                            </div>
+                            <div className="input-group mb-3">
+                                <input id="inputAddServer" type="text" className="form-control" placeholder="server"
                                        aria-label="username" aria-describedby="button-addon2"/>
                             </div>
                             <div id = "addUserErrorMessage" style={{color :"red"}}></div>
