@@ -2,6 +2,7 @@ import './UserData.css'
 import React from "react";
 import users from "../../DB/DB";
 import chats from "../../DB/Chats";
+import axios from "axios";
 
 
 function UserData(props) {
@@ -14,54 +15,67 @@ function UserData(props) {
     profilePic = require("../../DB/profilePictures/diff.jpg");
 //}
 
-    var nickname = users[props.id].name;
+    var nickname = props.myUser.name;
 
-    function addUser() {
+    async function addUser() {
         document.getElementById("addUserErrorMessage").innerHTML = "";
 
 
-        var contactName = document.getElementById("inputAddUser").value;
+        var contactId = document.getElementById("inputAddUser").value;
         document.getElementById("inputAddUser").value = '';
         let exist = false;
         let onMyContacts = false;
 
         // check if the contact name already in my contact list
-        for(let j =0; j< users[props.id].contacts.length;j++){
-            if(users[props.id].contacts[j].idc === contactName){
+        for (let j = 0; j < props.myUser.contacts.length; j++) {
+            if (props.myUser.contacts[j].id === contactId) {
                 onMyContacts = true;
+                document.getElementById("addUserErrorMessage").innerHTML = "the user already exist"
             }
         }
+        if (!onMyContacts) {
+            await axios.post("https://localhost:1234/api/Contact/", {
+                connectedId: props.myUser.id,
+                id: contactId,
+                name: contactId,
+                server: " "
+            }).then((response) => {
+                 {
+                     document.getElementById("closeButtonModal").click();
+                }
+            })
+                .catch(response=>{
+                    document.getElementById("addUserErrorMessage").innerHTML = "Invalid UserName";
+                })
 
-        // check if there is  exist match user
-        for(var i = 0; i < users.length;i++){
-            if (users[i].id === contactName){
-                exist = true;
-                break
-            }
+
         }
-
-        if(onMyContacts){
-            document.getElementById("addUserErrorMessage").innerHTML = "the user already exist";
-        }
-        else if(exist && !onMyContacts && contactName !== users[props.id].id){
-            users[props.id].contacts.push({idc: contactName,name: contactName, last: "", lastdate: ""})
-            props.setContacts(users[props.id].contacts.concat([]));
-            chats.push({id:chats.length+1, user1: users[props.id].id,user2:contactName,Messages: []})
-            chats.concat([]);
-
-
-            document.getElementById("closeButtonModal").click();
-
-        } else{
-            document.getElementById("addUserErrorMessage").innerHTML = "Invalid UserName";
-        }
-
-
-
-
     }
 
+        // check if there is  exist match user
+        // for(var i = 0; i < users.length;i++){
+        //     if (users[i].id === contactId){
+        //         exist = true;
+        //         break
+        //     }
+        // }
 
+
+        // if(onMyContacts){
+        //     document.getElementById("addUserErrorMessage").innerHTML = "the user already exist";
+        // }
+        // else if(exist && !onMyContacts && contactId !== users[props.id].id){
+        //     users[props.id].contacts.push({idc: contactId,name: contactId, last: "", lastdate: ""})
+        //     props.setContacts(users[props.id].contacts.concat([]));
+        //     chats.push({id:chats.length+1, user1: users[props.id].id,user2:contactId,Messages: []})
+        //     chats.concat([]);
+        //
+        //
+        //     document.getElementById("closeButtonModal").click();
+        //
+        // } else{
+        //     document.getElementById("addUserErrorMessage").innerHTML = "Invalid UserName";
+        // }
 
     return (
 

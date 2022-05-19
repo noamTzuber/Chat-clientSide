@@ -57,11 +57,19 @@ function RightSide(props) {
 
                     {  
                         getMessages().map((src, key ) => {
-                        if (src.sent === false) {
-                            return <Outgoing {...src} key={key}/>
-                        }
-                        return <IncomingMessage {...src} key={key}/>
-                    })
+                            if(props.myUser.id === props.currentConversation.user1){
+                                if (src.sent === true) {
+                                    return <Outgoing {...src} key={key}/>
+                                }
+                                return <IncomingMessage {...src} key={key}/>
+                            }
+                            else{
+                                if (src.sent === false) {
+                                    return <Outgoing {...src} key={key}/>
+                                }
+                                return <IncomingMessage {...src} key={key}/>
+                            }
+                        })
                     }
                 </div>
             </div>

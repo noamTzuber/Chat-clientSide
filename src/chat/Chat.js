@@ -77,7 +77,7 @@ function Chat() {
                 <div className="container">
                     <div className="section" id="left-section">
                         <div className="content"   >
-                            <UserData id={id} setContacts={setContacts} />
+                            <UserData id={id} myUser={myUser} setContacts={setContacts} />
                         </div>
                         <div className="scrollable-content" id="summary-conversation"
                             style={{ marginTop: "1%", backgroundColor: "rgb(194 190 190 / 42%)" }}>
