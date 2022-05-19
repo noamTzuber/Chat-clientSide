@@ -72,7 +72,7 @@ function RightSide(props) {
                 </div>
             </div>
             <div className="content">
-                <Btn myUser={props.myUser} setContact ={props.setContact} setMessages={props.setMessages} currentConversation={props.currentConversation} />
+                <Btn id = {props.id} myUser={props.myUser} setContact ={props.setContact} setMessages={props.setMessages} currentConversation={props.currentConversation} />
             </div>
         </div>
     )

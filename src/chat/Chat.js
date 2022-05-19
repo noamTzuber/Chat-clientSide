@@ -13,14 +13,13 @@ import { useLocation } from 'react-router-dom';
 function Chat() {
     const { state } = useLocation();
     const { id } = state;
-    console.log(id)
 
 
 
     const [myChats, setMyChats] = useState([]);
 
     const getChats = async function() {
-        await fetch("https://localhost:1234/api/Contact/Chats")
+        await fetch("https://localhost:1234/api/Contact/Chats?connectedId="+ id)
             .then(response => response.json())
             .then(data => {
                 setMyChats(data);
@@ -34,7 +33,7 @@ function Chat() {
     const [myUser, setMyUser] = useState({id:'', name:'', password:'', server:'' ,contacts:[]});
 
     const getUser = async function() {
-        await fetch("https://localhost:1234/api/Contact/User?connectedId=")
+        await fetch("https://localhost:1234/api/Contact/User?connectedId="+id)
             .then(response => response.json())
             .then(data => {
                 setMyUser(data);
@@ -76,7 +75,7 @@ function Chat() {
 
             <div className="col-9">
 
-                <RightSide myUser={myUser} setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages}  myChats = {myChats} />
+                <RightSide id={id} myUser={myUser} setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages}  myChats = {myChats} />
             </div>
 
         </div>

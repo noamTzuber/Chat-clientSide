@@ -116,7 +116,8 @@ function Btn(props) {
         // audio.value = "";
     }
     async function postMessages(currentText) {
-        const res = await axios.post("https://localhost:1234/api/Contact/" + chooseContact() + "/messages",
+        console.log(props.id);
+        const res = await axios.post("https://localhost:1234/api/Contact/" + chooseContact() + "/messages?connectedId=" + props.id,
             {
                 ConnectedId: props.myUser.id,
                 content: currentText
@@ -156,7 +157,7 @@ function Btn(props) {
         if (currentText === '') {
             return;
         }
-        postMessages(currentText);
+        postMessages(currentText, props.id);
 
 
 
@@ -322,7 +323,7 @@ function Btn(props) {
                 </button>
 
                 <input id="current-text" type="text" style={{borderRadius:"50px"}} className="form-control" aria-label="Text input with 2 dropdown buttons"/>
-                <button style={{backgroundColor:"transparent", border:"0px"}} onClick={()=>send()}>
+                <button style={{backgroundColor:"transparent", border:"0px"}} onClick={()=>send(props.id)}>
                     <i className='fa fa-send'></i>
                 </button>
 
