@@ -1,7 +1,6 @@
 import './UserData.css'
 import React from "react";
-import users from "../../DB/DB";
-import chats from "../../DB/Chats";
+
 import axios from "axios";
 
 
@@ -9,9 +8,7 @@ function UserData(props) {
 
 
     var profilePic;
-    // if(users[props.id].profilePic.length > 50){
-    //      profilePic = users[props.id].profilePic;
-    // }else{
+
     profilePic = require("../../DB/profilePictures/diff.jpg");
 //}
 

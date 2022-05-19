@@ -89,7 +89,7 @@ function Register() {
                         
     // }
                     // users.push({ id: newUserName,localhost:server, name:newNickname, password: newPassword, chats: [], contacts:[]})
-                    navigate('/Chat', {state:{id:0}})
+                    navigate('/Chat', {state:{id:newUserName}})
                 }
             // }
 

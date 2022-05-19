@@ -1,5 +1,4 @@
 import './Contact.css'
-import users from "../../DB/DB";
 
 function Contact(props) {
     let p;

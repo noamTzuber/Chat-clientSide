@@ -1,6 +1,5 @@
 import './SummaryConversation.css'
-import users from "../../DB/DB";
-import chats from "../../DB/Chats";
+
 
 // {name, lastTime, lastMessage, setCurrentConversation}
 function SummaryConversation(props) {
@@ -9,22 +8,13 @@ function SummaryConversation(props) {
     var showConversation = function (id) {
         for (let i = 0; i < props.myChats.length; i++) {
             // console.log(i)
-            if (( props.myChats[i].user1 === users[props.userId].id && props.myChats[i].user2 === id )||
-            (props.myChats[i].user2 === users[props.userId].id && props.myChats[i].user1 === id)) {
+            if (( props.myChats[i].user1 === props.myUser.id && props.myChats[i].user2 === id )||
+            (props.myChats[i].user2 === props.myUser.id && props.myChats[i].user1 === id)) {
                 props.setCurrentConversation(props.myChats[i]);
             }
-            // console.log("the id of th euser is: " + users[props.userId].id )
-            // console.log(chats[i].user2, "?=" ,users[props.userId].id)
+
         }
-
-
-//         for (let i = 0; i < users[props.id].contacts.length; i++) {
-//             if (contact === users[props.id].contacts[i].idc) {
-//                 props.setCurrentConversation(users[props.id].chats[i]);
-//             }
-//         }
     }
-    //const profilePic = require("../../DB/profilePictures/".concat("", users[0].chats[props.key].img));
 
     function shortLastMessage(){
         let maxSize = 25;

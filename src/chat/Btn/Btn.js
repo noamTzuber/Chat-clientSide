@@ -1,6 +1,4 @@
 import './Btn.css'
-import users from "../../DB/DB";
-import chats from "../../DB/Chats";
 import RecordAudio from "./RecordAudio";
 import React, { useState } from "react";
 import VideoRecord from "./VideoRecord";
@@ -9,7 +7,7 @@ import axios from "axios";
 
 function Btn(props) {
     function chooseContact(){
-        if(props.currentConversation.user1 === users[props.id].id){
+        if(props.currentConversation.user1 === props.myUser.id){
             return props.currentConversation.user2;
         }
         return props.currentConversation.user1;

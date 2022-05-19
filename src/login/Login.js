@@ -48,7 +48,7 @@ function Login() {
             }
 
         if(userExist){
-            navigate('/Chat', {state:{id: i}})
+            navigate('/Chat', {state:{id: users[i].id}})
         }
         else{
             errorMessage.innerHTML = "Username or password incorrect";

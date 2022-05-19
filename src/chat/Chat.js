@@ -2,12 +2,8 @@ import './Chat.css'
 import SummaryConversation from './summaryConversation/SummaryConversation';
 import UserData from "./userData/UserData";
 
-import users from "../DB/DB";
 import { useState, useEffect } from "react";
 import RightSide from "./rightSide/RightSide";
-
-import axios from 'axios';
-
 
 import { useLocation } from 'react-router-dom';
 
@@ -15,6 +11,12 @@ import { useLocation } from 'react-router-dom';
 
 
 function Chat() {
+    const { state } = useLocation();
+    const { id } = state;
+    console.log(id)
+
+
+
     const [myChats, setMyChats] = useState([]);
 
     const getChats = async function() {
@@ -32,7 +34,7 @@ function Chat() {
     const [myUser, setMyUser] = useState({id:'', name:'', password:'', server:'' ,contacts:[]});
 
     const getUser = async function() {
-        await fetch("https://localhost:1234/api/Contact/User")
+        await fetch("https://localhost:1234/api/Contact/User?connectedId=")
             .then(response => response.json())
             .then(data => {
                 setMyUser(data);
@@ -44,30 +46,14 @@ function Chat() {
 
 
 
-    const { state } = useLocation();
-    const { id } = state;
+  
     
     const [currentTalk, setCurrentTalk] = useState({ id: 0, user1: '', user2: '', Messages: [] });
     const [currentMessages, setCurrentMessages] = useState([]);
     const [contacts, setContacts] = useState([]);
-
-
-   
-    // async function post(){
-    //     const response = await axios.post("https://localhost:1234/api/Contact", {
-    //                     "connectedId": "yossi",
-    //                     "id": "string",
-    //                     "name": "string",
-    //                     "server": "string"
-    //                 });
-    
-    // }
-    // console.log(myUser);
-
-    // console.log(contacts)
     
     const userList = myUser.contacts.map((contact, key) => {
-        return < SummaryConversation{...contact} setCurrentConversation={setCurrentTalk} myChats={myChats} userId={id} num={key} key={key} />
+        return < SummaryConversation{...contact} myUser={myUser} setCurrentConversation={setCurrentTalk} myChats={myChats}  num={key} key={key} />
     });
 
     return (
@@ -77,7 +63,7 @@ function Chat() {
                 <div className="container">
                     <div className="section" id="left-section">
                         <div className="content"   >
-                            <UserData id={id} myUser={myUser} setContacts={setContacts} />
+                            <UserData myUser={myUser} setContacts={setContacts} />
                         </div>
                         <div className="scrollable-content" id="summary-conversation"
                             style={{ marginTop: "1%", backgroundColor: "rgb(194 190 190 / 42%)" }}>
@@ -90,7 +76,7 @@ function Chat() {
 
             <div className="col-9">
 
-                <RightSide myUser={myUser} setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages} id={id} myChats = {myChats} />
+                <RightSide myUser={myUser} setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages}  myChats = {myChats} />
             </div>
 
         </div>
