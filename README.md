@@ -25,3 +25,7 @@ Password: harry1234
 In this user you can see correspondence of conversations with 5 different users encoded in the data structure of the program, so when refreshed they will not be deleted, but new messages yes.
 
 To add a conversation with a new person, click on the Add User icon and enter a username that exists in the data structure. (Our existing users are itay and noam) Please note that a user who already has us on the call list cannot be added.
+
+///for the second part of the project
+npm install yarn -g
+yarn add react-signalr
