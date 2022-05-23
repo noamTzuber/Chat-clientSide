@@ -49,7 +49,10 @@ function Chat() {
                 if (chatRoom == undefined) {
                     return
                 }
-                chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent: true, created: '11/30/2000' });
+                let sent = (id === src);
+                if(sent)
+                console.log("sent: " ,id === src);
+                chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent:true, created: '11/30/2000' });
                 setMyChats(newChat.current.concat([]));
             })
         })
