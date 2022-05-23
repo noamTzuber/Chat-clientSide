@@ -116,12 +116,14 @@ function Btn(props) {
         // audio.value = "";
     }
     async function postMessages(currentText) {
-        console.log(props.id);
         const res = await axios.post("https://localhost:1234/api/Contact/" + chooseContact() + "/messages?connectedId=" + props.id,
-            {
-                ConnectedId: props.myUser.id,
-                content: currentText
-            }).then(transferMessage(currentText))
+        {
+            ConnectedId: props.myUser.id,
+            content: currentText
+        }).then(transferMessage(currentText)).then(async () => {
+            await props.con.invoke("SendMessage", currentText, props.myUser.id, chooseContact());
+
+        })
     }
 
 
@@ -145,7 +147,6 @@ function Btn(props) {
         }
 
         if(props.myUser.server === chooseContactServer()){
-            console.log("is equal");
         }
     }
         
