@@ -24,8 +24,6 @@ function Chat() {
             .then(data => {
                 newChat.current = data;
                 setMyChats(data);
-                console.log("Itay and noam ruined it!!! :(")
-                console.log(newChat.current)
             });
     }
     useEffect(getChats, [1]);
@@ -40,50 +38,19 @@ function Chat() {
     }, []);
 
 
-
-
-
     useEffect(() => {
         if (!con) {
             return;
         }
+
         con.start().then(isSeccess => {
             con.on("ReceiveMessage", (message, src, dst) => {
-                console.log(message)
                 let chatRoom = newChat.current.find((chat) => (chat.user1 == src && chat.user2 == dst) || (chat.user2 == src && chat.user1 == dst));
                 if (chatRoom == undefined) {
-                    console.log("Couldn't find chat: " + src + ", " + dst)
-                    console.log("myChats: " + JSON.stringify(newChat.current))
                     return
                 }
                 chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent: true, created: '11/30/2000' });
-                console.log("Trying to add message")
                 setMyChats(newChat.current.concat([]));
-
-                /*
-                                console.log("reciesced " +  JSON.stringify(myChats));
-                                const updatedChatWithNewMassege = [...newChat.current]
-                                // console.log(JSON.stringify(updatedChatWithNewMassege) + "0")
-                                
-                                console.log(myChats.length)
-                                for(var i = 0 ; i < myChats.length; i++){
-                                    if((updatedChatWithNewMassege[i].user1 ==="noam"&& updatedChatWithNewMassege[i].user2 === "yossi") ||
-                                        (updatedChatWithNewMassege[i].user2 === "noam" && updatedChatWithNewMassege[i].user1 === "yossi")){
-                                            console.log("found chat")
-                                            
-                                            // updatedChatWithNewMassege[i].messages.push({id : updatedChatWithNewMassege[i].messages.length + 1, content : message, created :"10:10", sent : (true)} );
-                                            // console.log(JSON.stringify(updatedChatWithNewMassege) + "1")
-                
-                                            // console.log(JSON.stringify(updatedChatWithNewMassege) + "1")
-                                            // console.log(JSON.stringify(myChats) + "2")
-                                            console.log("Itay is king")
-                                            // console.log("Hello: \n" + JSON.stringify(updatedChatWithNewMassege))
-                                            // setMyChats(myChats[i].messages.concat([{id : updatedChatWithNewMassege[i].messages.length + 1, content : message, created :"10:10", sent : (true)}]));
-                                            myChats[i].message.push({id : updatedChatWithNewMassege[i].messages.length + 1, content : message, created :"10:10", sent : (true)})
-                                            setMyChats(myChats.concat([]))
-                                        }
-                                }
-                                */
             })
         })
     }, [con]);
