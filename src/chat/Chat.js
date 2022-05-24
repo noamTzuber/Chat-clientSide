@@ -83,6 +83,7 @@ function Chat() {
                     return
                 }
 
+                
 
                 let isSent = true
                 if(newUser.current.id === dst){
