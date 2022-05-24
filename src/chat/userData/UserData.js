@@ -39,6 +39,7 @@ function UserData(props) {
 
         }
         else if (!onMyContacts) {
+            console.log("in here!")
             await axios.post("https://"+server+"/api/invitations/",{
                 from:props.myUser.id,
                 to:contactId,

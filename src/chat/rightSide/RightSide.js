@@ -31,6 +31,8 @@ function RightSide(props) {
 
     }
 
+    
+
 
     function getMessages(){
         var contactId = findDestID();
@@ -72,7 +74,7 @@ function RightSide(props) {
                 </div>
             </div>
             <div className="content">
-                <Btn con = {props.con} id = {props.id} myUser={props.myUser} setContact ={props.setContact} setMessages={props.setMessages} currentConversation={props.currentConversation} />
+                <Btn con = {props.con} id = {props.id} myUser={props.myUser} setMyUser= { props.setMyUser} setContact ={props.setContact} setMessages={props.setMessages} currentConversation={props.currentConversation} />
             </div>
         </div>
     )

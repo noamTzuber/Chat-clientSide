@@ -7,6 +7,7 @@ import RightSide from "./rightSide/RightSide";
 
 import { useLocation } from 'react-router-dom';
 import { HubConnectionBuilder } from '@microsoft/signalr';
+import { ConsoleLogger } from '@microsoft/signalr/dist/esm/Utils';
 
 
 
@@ -52,21 +53,7 @@ function Chat() {
     }, []);
 
 
-    // useEffect(() => {
-    //     if (!con) {
-    //         return;
-    //     }
-    //     con.start().then(isSeccess => {
-    //         con.on("ReceiveMessage", (message, src, dst) => {
-    //             let chatRoom = newChat.current.find((chat) => (chat.user1 == src && chat.user2 == dst) || (chat.user2 == src && chat.user1 == dst));
-    //             if (chatRoom === undefined) {
-    //                 return
-    //             }
-    //             chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent:true, created: '11/30/2000' });
-    //             setMyChats(newChat.current.concat([]));
-    //         })
-    //     })
-    // }, [con]);
+   
 
     useEffect(() => {
         if (!con) {
@@ -94,10 +81,48 @@ function Chat() {
                 }
 
 
-                chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent:isSent, created: '11/30/2000' });
+                
+
+
+
+
+
+                var today = new Date();
+                let month =today.getMonth()+1<9?'0'+(today.getMonth()+1) : (today.getMonth()+1)
+                let day =today.getDay()<9?'0'+(today.getDay()) : (today.getDay())
+                let hour =today.getHours()<9?'0'+(today.getHours()) : (today.getHours())
+                let minutes=today.getMinutes()<9?'0'+(today.getMinutes()) : (today.getMinutes())
+                let second=today.getSeconds()<9?'0'+(today.getSeconds()) : (today.getSeconds())
+                let date=today.getFullYear()+'-'+month+'-'+day+'T'+hour+
+                    ':'+minutes+':'+second+'.'+today.getMilliseconds();
+               
+
+                chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent:isSent, created: date });
                 setMyChats(newChat.current.concat([]));
+
+
+                let newContacts = newUser.current.contacts;
+                
+                for(let i = 0 ; i <newContacts.length; i++){{
+
+                if(newContacts[i].id === src){
+                    console.log("founded!!");
+
+                    newContacts[i].last = message;
+                    newContacts[i].lastdate = date;
+                    setMyUser({ id: newUser.current.id, name: newUser.current.name,  password: newUser.current.password,  server: newUser.current.server, contacts: newContacts })
+                }
+
+
+            }}
             })
             con.on("ContactAdded", (contactId, name, server, src, dst) => {
+
+                if(newUser.current.id !== src && newUser.current.id !== dst){
+                    return
+                }
+                // await Clients.All.SendAsync("ReceiveMessage", transferMessageObject.Content, src, dst);
+
                 let contactList=newUser.current.contacts;
                 let contact=newUser.current.contacts.find((contact)=>(contact.id === contactId))
                 console.log(newUser.current)
@@ -120,6 +145,8 @@ function Chat() {
             })
         })
     }, [con]);
+
+   
 
 
     // useEffect(() => {
@@ -158,7 +185,7 @@ function Chat() {
 
 
     const userList = myUser.contacts.map((contact, key) => {
-        return < SummaryConversation{...contact} myUser={myUser} setCurrentConversation={setCurrentTalk} myChats={myChats} num={key} key={key} />
+        return < SummaryConversation{...contact} myUser={myUser}  setCurrentConversation={setCurrentTalk} myChats={myChats} num={key} key={key} />
     });
 
     return (
@@ -181,7 +208,7 @@ function Chat() {
 
             <div className="col-9">
 
-                <RightSide con={con} id={id} myUser={myUser} setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages} myChats={myChats} />
+                <RightSide con={con} id={id} myUser={myUser} setContact={setContacts} currentConversation={currentTalk} setMessages={setCurrentMessages} myChats={myChats} setMyUser= { setMyUser}/>
             </div>
 
         </div>
