@@ -46,7 +46,6 @@ function UserData(props) {
             }).then(async (res) =>{
 
                 await axios.post("https://localhost:1234/api/Contact/?connectedId="+props.myUser.id, {
-                    connectedId: props.myUser.id,
                     id: contactId,
                     name: nickName,
                     server: server

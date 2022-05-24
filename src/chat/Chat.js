@@ -17,6 +17,8 @@ function Chat() {
     const [con, setCon] = useState(null);
     const newChat = useRef([]);
     const newUser = useRef([]);
+    const [myUser, setMyUser] = useState({ id: '', name: '', password: '', server: '', contacts: [] });
+    const [contacts, setContacts] = useState([]);
 
     const [myChats, setMyChats] = useState([]);
     const getChats = async function () {
@@ -29,7 +31,6 @@ function Chat() {
     }
     useEffect(getChats, [1]);
 
-    const [myUser, setMyUser] = useState({ id: '', name: '', password: '', server: '', contacts: [] });
 
     const getUser = async function () {
         await fetch("https://localhost:1234/api/Contact/User?connectedId=" + id)
@@ -51,41 +52,85 @@ function Chat() {
     }, []);
 
 
+    // useEffect(() => {
+    //     if (!con) {
+    //         return;
+    //     }
+    //     con.start().then(isSeccess => {
+    //         con.on("ReceiveMessage", (message, src, dst) => {
+    //             let chatRoom = newChat.current.find((chat) => (chat.user1 == src && chat.user2 == dst) || (chat.user2 == src && chat.user1 == dst));
+    //             if (chatRoom === undefined) {
+    //                 return
+    //             }
+    //             chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent:true, created: '11/30/2000' });
+    //             setMyChats(newChat.current.concat([]));
+    //         })
+    //     })
+    // }, [con]);
+
     useEffect(() => {
         if (!con) {
             return;
         }
-
         con.start().then(isSeccess => {
             con.on("ReceiveMessage", (message, src, dst) => {
                 let chatRoom = newChat.current.find((chat) => (chat.user1 == src && chat.user2 == dst) || (chat.user2 == src && chat.user1 == dst));
-                if (chatRoom == undefined) {
+                if (chatRoom === undefined) {
                     return
                 }
- 
                 chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent:true, created: '11/30/2000' });
                 setMyChats(newChat.current.concat([]));
             })
-        })
-    }, [con]);
-
-
-    useEffect(() => {
-        console.log("in here1")
-        if (!con) {
-            return;
-        }
-        console.log("in here2")
-            let contactList=newUser.current.contacts;
-        con.start().then(isSeccess => {
             con.on("ContactAdded", (contactId, name, server, src, dst) => {
+                let contactList=newUser.current.contacts;
+                let contact=newUser.current.contacts.find((contact)=>(contact.id === contactId))
+                console.log(newUser.current)
+                 if(contact !== undefined || contactId === newUser.current.id){
+                    console.log(contact);
+                     /**try do it without to refresh all page.*/
+                    window.location.reload(false);
+                    return;
+                }
                 contactList.push({id: contactId, name: name, server: server, last: '', lastdate: ''})
-                console.log("in here3")
-                setMyUser(newUser.current.concat([]));
-                console.log("new contact");
+                console.log(JSON.stringify(newUser.current))
+                setMyUser(
+                    {id:myUser.id,name: myUser.name,password:myUser.password,server:myUser.server,contacts: contactList}
+                );
+                 /**try do it without to refresh all page.*/
+                window.location.reload(false);
+
+
+
             })
         })
     }, [con]);
+
+
+    // useEffect(() => {
+    //
+    //     if (!con) {
+    //         return;
+    //     }
+    //     con.start().then(isSeccess => {
+    //         con.on("ContactAdded", (contactId, name, server, src, dst) => {
+    //             let contactList=newUser.current.contacts;
+    //             let contact=newUser.current.contacts.find((contact)=>(contact.id === contactId))
+    //             console.log(newUser.current)
+    //             if(contact !== undefined || contactId === newUser.current.id){
+    //                 console.log(contact);
+    //                 window.location.reload(false);
+    //                 return;
+    //             }
+    //             contactList.push({id: contactId, name: name, server: server, last: '', lastdate: ''})
+    //             console.log(JSON.stringify(newUser.current))
+    //             setMyUser(
+    //                 {id:myUser.id,name: myUser.name,password:myUser.password,server:myUser.server,contacts: contactList}
+    //             );
+    //             window.location.reload(false);
+    //
+    //         })
+    //     })
+    // }, [con]);
 
 
 
@@ -94,7 +139,7 @@ function Chat() {
 
     const [currentTalk, setCurrentTalk] = useState({ id: 0, user1: '', user2: '', Messages: [] });
     const [currentMessages, setCurrentMessages] = useState([]);
-    const [contacts, setContacts] = useState([]);
+
 
     const userList = myUser.contacts.map((contact, key) => {
         return < SummaryConversation{...contact} myUser={myUser} setCurrentConversation={setCurrentTalk} myChats={myChats} num={key} key={key} />
