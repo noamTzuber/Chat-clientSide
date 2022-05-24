@@ -50,15 +50,13 @@ function UserData(props) {
                     id: contactId,
                     name: nickName,
                     server: server
-                }).then( (response) => {
+                }).then((response) =>
                     {
                         document.getElementById("closeButtonModal").click();
-                        console.log("before invoke").then(
-                        props.con.invoke("AddContact", props.myUser.id,props.myUser.id, props.myUser.server, props.myUser.id, contactId))
-                        .then(console.log("after invoke"));
+                        props.con.invoke("AddContact", props.myUser.id,props.myUser.id, props.myUser.server, props.myUser.id, contactId);
 
                     }
-                })
+                )
                     .catch(response=>{
                         document.getElementById("addUserErrorMessage").innerHTML = "Invalid UserName or Server";
                     })

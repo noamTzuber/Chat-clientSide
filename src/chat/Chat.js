@@ -16,6 +16,7 @@ function Chat() {
     const { id } = state;
     const [con, setCon] = useState(null);
     const newChat = useRef([]);
+    const newUser = useRef([]);
 
     const [myChats, setMyChats] = useState([]);
     const getChats = async function () {
@@ -34,6 +35,7 @@ function Chat() {
         await fetch("https://localhost:1234/api/Contact/User?connectedId=" + id)
             .then(response => response.json())
             .then(data => {
+                newUser.current=data;
                 setMyUser(data);
             });
     }
@@ -69,26 +71,22 @@ function Chat() {
 
 
     useEffect(() => {
-        console.log("in here")
+        console.log("in here1")
         if (!con) {
             return;
         }
-
+        console.log("in here2")
+            let contactList=newUser.current.contacts;
+        con.start().then(isSeccess => {
             con.on("ContactAdded", (contactId, name, server, src, dst) => {
+                contactList.push({id: contactId, name: name, server: server, last: '', lastdate: ''})
+                console.log("in here3")
+                setMyUser(newUser.current.concat([]));
                 console.log("new contact");
             })
-        
+        })
     }, [con]);
 
-
-
-
-
-
-
-
-
-  
 
 
 
@@ -109,7 +107,7 @@ function Chat() {
                 <div className="container">
                     <div className="section" id="left-section">
                         <div className="content"   >
-                            <UserData myUser={myUser} setContacts={setContacts} />
+                            <UserData con={con} myUser={myUser} setContacts={setContacts} />
                         </div>
                         <div className="scrollable-content" id="summary-conversation"
                             style={{ marginTop: "1%", backgroundColor: "rgb(194 190 190 / 42%)" }}>
