@@ -28,6 +28,17 @@ function Chat() {
     }
     useEffect(getChats, [1]);
 
+    const [myUser, setMyUser] = useState({ id: '', name: '', password: '', server: '', contacts: [] });
+
+    const getUser = async function () {
+        await fetch("https://localhost:1234/api/Contact/User?connectedId=" + id)
+            .then(response => response.json())
+            .then(data => {
+                setMyUser(data);
+            });
+    }
+    useEffect(getUser, [1]);
+
 
 
     useEffect(() => {
@@ -49,13 +60,24 @@ function Chat() {
                 if (chatRoom == undefined) {
                     return
                 }
-                let sent = (id === src);
-                if(sent)
-                console.log("sent: " ,id === src);
+ 
                 chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent:true, created: '11/30/2000' });
                 setMyChats(newChat.current.concat([]));
             })
         })
+    }, [con]);
+
+
+    useEffect(() => {
+        console.log("in here")
+        if (!con) {
+            return;
+        }
+
+            con.on("ContactAdded", (contactId, name, server, src, dst) => {
+                console.log("new contact");
+            })
+        
     }, [con]);
 
 
@@ -66,19 +88,7 @@ function Chat() {
 
 
 
-    const [myUser, setMyUser] = useState({ id: '', name: '', password: '', server: '', contacts: [] });
-
-    const getUser = async function () {
-        await fetch("https://localhost:1234/api/Contact/User?connectedId=" + id)
-            .then(response => response.json())
-            .then(data => {
-                setMyUser(data);
-                console.log("Updated user")
-            });
-    }
-
-    useEffect(getUser, [1]);
-    // console.log(myUser);
+  
 
 
 

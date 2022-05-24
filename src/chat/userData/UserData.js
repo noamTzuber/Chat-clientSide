@@ -44,14 +44,19 @@ function UserData(props) {
                 to:contactId,
                 server:props.myUser.server
             }).then(async (res) =>{
+
                 await axios.post("https://localhost:1234/api/Contact/?connectedId="+props.myUser.id, {
                     connectedId: props.myUser.id,
                     id: contactId,
                     name: nickName,
                     server: server
-                }).then((response) => {
+                }).then( (response) => {
                     {
                         document.getElementById("closeButtonModal").click();
+                        console.log("before invoke").then(
+                        props.con.invoke("AddContact", props.myUser.id,props.myUser.id, props.myUser.server, props.myUser.id, contactId))
+                        .then(console.log("after invoke"));
+
                     }
                 })
                     .catch(response=>{
