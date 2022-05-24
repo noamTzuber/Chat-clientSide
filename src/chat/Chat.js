@@ -74,11 +74,26 @@ function Chat() {
         }
         con.start().then(isSeccess => {
             con.on("ReceiveMessage", (message, src, dst) => {
+                if(newUser.current.id !== src && newUser.current.id !== dst){
+                    return
+                }
+
                 let chatRoom = newChat.current.find((chat) => (chat.user1 == src && chat.user2 == dst) || (chat.user2 == src && chat.user1 == dst));
                 if (chatRoom === undefined) {
                     return
                 }
-                chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent:true, created: '11/30/2000' });
+
+
+                let isSent = true
+                if(newUser.current.id === dst){
+                    isSent = false
+                }
+                if(newUser.current.id === chatRoom.user2){
+                    isSent = !isSent
+                }
+
+
+                chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent:isSent, created: '11/30/2000' });
                 setMyChats(newChat.current.concat([]));
             })
             con.on("ContactAdded", (contactId, name, server, src, dst) => {
