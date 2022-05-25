@@ -17,6 +17,18 @@ function Btn(props) {
     const [srcRec, setSrcRec] = useState('')
     const [srcVid, setSrcVid] = useState('')
 
+    function date(){
+        var today = new Date();
+        let month =today.getMonth()+1<9?'0'+(today.getMonth()+1) : (today.getMonth()+1)
+        let day =today.getDate()<9?'0'+(today.getDate()) : (today.getDate())
+        let hour =today.getHours()<9?'0'+(today.getHours()) : (today.getHours())
+        let minutes=today.getMinutes()<9?'0'+(today.getMinutes()) : (today.getMinutes())
+        let second=today.getSeconds()<9?'0'+(today.getSeconds()) : (today.getSeconds())
+        let date=today.getFullYear()+'-'+month+'-'+day+'T'+hour+
+            ':'+minutes+':'+second+'.'+today.getMilliseconds()+Math.floor(Math.random()*10000);
+        return date;
+    }
+
     function uploadImg() {
         // let img = document.getElementById("img_submit");
         // let imgURL = document.getElementById("img_submit").value;
@@ -122,6 +134,14 @@ function Btn(props) {
             content: currentText
         }).then(transferMessage(currentText)).then(async () => {
             await props.con.invoke("SendMessage", currentText, props.myUser.id, chooseContact());
+            let newContacts = props.myUser.contacts;
+            for(let i = 0 ; i <newContacts.length; i++){{
+                if(newContacts[i].id === chooseContact()){
+                    newContacts[i].last = currentText;
+                    newContacts[i].lastdate = date();
+                    props.setMyUser({ id: props.myUser.id, name: props.myUser.name,  password: props.myUser.password,  server: props.myUser.server, contacts: newContacts })
+                }
+            }}
 
         })
     }
