@@ -101,15 +101,15 @@ function Chat() {
             con.on("ContactAdded", async (contactId, name, server, src, dst) => {
                 let contactList=newUser.current.contacts;
                 let contact=newUser.current.contacts.find((contact)=>(contact.id === contactId))
-                 if(contact !== undefined || (newUser.current.id !== src && newUser.current.id !== dst) ){
+                if(contact !== undefined || (newUser.current.id !== src && newUser.current.id !== dst) ){
                     return;
                 }
                 await fetch("https://localhost:1234/api/Contact/User?connectedId=" + id)
-                        .then(response => response.json())
-                        .then(data => {
-                            newUser.current.contacts=data.contacts;
-                        }).then(()=>{
-                            newChat.current.push({id:newChat.current.length+1,user1:src,user2:dst,messages:[]})
+                    .then(response => response.json())
+                    .then(data => {
+                        newUser.current.contacts=data.contacts;
+                    }).then(()=>{
+                        newChat.current.push({id:newChat.current.length+1,user1:src,user2:dst,messages:[]})
                         console.log( newChat.current)
                         setMyChats(newChat.current.concat([]));
                     });
@@ -137,7 +137,7 @@ function Chat() {
                             <UserData con={con} myUser={myUser} setContacts={setContacts} />
                         </div>
                         <div className="scrollable-content" id="summary-conversation"
-                            style={{ marginTop: "1%", backgroundColor: "rgb(194 190 190 / 42%)" }}>
+                             style={{ marginTop: "1%", backgroundColor: "rgb(194 190 190 / 42%)" }}>
                             {userList}
 
                         </div>

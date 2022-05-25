@@ -157,15 +157,6 @@ function Btn(props) {
                 }
             }}
 
-
-            let newContacts = props.myUser.contacts;
-            for(let i = 0 ; i <newContacts.length; i++){{
-                if(newContacts[i].id === chooseContact()){
-                    newContacts[i].last = currentText;
-                    newContacts[i].lastdate = getTime();
-                    props.setMyUser({ id: props.myUser.id, name: props.myUser.name,  password: props.myUser.password,  server: props.myUser.server, contacts: newContacts })
-                }
-            }}
         })
     }
 
