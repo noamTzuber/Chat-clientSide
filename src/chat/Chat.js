@@ -32,15 +32,15 @@ function Chat() {
     useEffect(getChats, [1]);
 
 
-    const getUser = async function () {
+
+    useEffect(async()=>{
         await fetch("https://localhost:1234/api/Contact/User?connectedId=" + id)
             .then(response => response.json())
             .then(data => {
                 newUser.current=data;
                 setMyUser(data);
             });
-    }
-    useEffect(getUser, [1]);
+    },[]);
 
 
 
@@ -68,7 +68,7 @@ function Chat() {
     //     })
     // }, [con]);
 
-    useEffect(() => {
+    useEffect( () => {
         if (!con) {
             return;
         }
@@ -83,8 +83,6 @@ function Chat() {
                     return
                 }
 
-                
-
                 let isSent = true
                 if(newUser.current.id === dst){
                     isSent = false
@@ -97,23 +95,32 @@ function Chat() {
                 chatRoom.messages.push({ id: chatRoom.messages.length, content: message, sent:isSent, created: '11/30/2000' });
                 setMyChats(newChat.current.concat([]));
             })
-            con.on("ContactAdded", (contactId, name, server, src, dst) => {
+            con.on("ContactAdded", async (contactId, name, server, src, dst) => {
                 let contactList=newUser.current.contacts;
                 let contact=newUser.current.contacts.find((contact)=>(contact.id === contactId))
                 console.log(newUser.current)
-                 if(contact !== undefined || contactId === newUser.current.id){
+                console.log(myUser)
+                 if(contact !== undefined || (newUser.current.id !== src && newUser.current.id !== dst) ){
                     console.log(contact);
-                     /**try do it without to refresh all page.*/
-                    window.location.reload(false);
                     return;
                 }
-                contactList.push({id: contactId, name: name, server: server, last: '', lastdate: ''})
-                console.log(JSON.stringify(newUser.current))
-                setMyUser(
-                    {id:myUser.id,name: myUser.name,password:myUser.password,server:myUser.server,contacts: contactList}
-                );
+                await fetch("https://localhost:1234/api/Contact/User?connectedId=" + id)
+                        .then(response => response.json())
+                        .then(data => {
+                            newUser.current.contacts=data.contacts;
+                        }).then(()=>{
+                            newChat.current.push({id:newChat.current.length+1,user1:src,user2:dst,messages:[]})
+                        console.log( newChat.current)
+                        setMyChats(newChat.current.concat([]));
+
+                    });
+                // contactList.push({id: contactId, name: name, server: server, last: '', lastdate: ''})
+                // console.log(JSON.stringify(newUser.current))
+                // setMyUser(
+                //     {id:myUser.id,name: myUser.name,password:myUser.password,server:myUser.server,contacts: contactList}
+                // );
                  /**try do it without to refresh all page.*/
-                window.location.reload(false);
+
 
 
 
