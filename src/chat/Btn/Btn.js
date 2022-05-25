@@ -59,7 +59,7 @@ function Btn(props) {
         //
         // }
         // img.value = "";
-    }
+        }
 
     function uploadVid() {
         // let vid = document.getElementById("vid_submit");
@@ -93,7 +93,7 @@ function Btn(props) {
         //
         // }
         // vid.value = "";
-    }
+        }
 
     function uploadRecord() {
         // let audio = document.getElementById("audio_submit");
@@ -127,18 +127,6 @@ function Btn(props) {
         // }
         // audio.value = "";
     }
-    function getTime(){
-        var today = new Date();
-        let month =today.getMonth()+1<9?'0'+(today.getMonth()+1) : (today.getMonth()+1)
-        let day =today.getDay()<9?'0'+(today.getDay()) : (today.getDay())
-        let hour =today.getHours()<9?'0'+(today.getHours()) : (today.getHours())
-        let minutes=today.getMinutes()<9?'0'+(today.getMinutes()) : (today.getMinutes())
-        let second=today.getSeconds()<9?'0'+(today.getSeconds()) : (today.getSeconds())
-        let date=today.getFullYear()+'-'+month+'-'+day+'T'+hour+
-            ':'+minutes+':'+second+'.'+today.getMilliseconds();
-        return date;
-
-    }
 
 
     async function postMessages(currentText) {
@@ -171,7 +159,6 @@ function Btn(props) {
     }
 
     async function transferMessage(currentText) {
-
         if(props.myUser.server !== chooseContactServer()){
             const res = await axios.post("https://"+chooseContactServer +"/api/transfer/",
             {
@@ -194,9 +181,6 @@ function Btn(props) {
             return;
         }
         postMessages(currentText, props.id);
-
-
-
 
         // var d = new Date();
         // let date = +String(d.getDate()).padStart(2, '0') + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getFullYear()).slice(2, 4);
@@ -226,8 +210,8 @@ function Btn(props) {
         //
         //     }
         // }
-        document.getElementById('current-text').value = '';
 
+        document.getElementById('current-text').value = '';
     }
 
     function sendAudio() {
@@ -254,7 +238,6 @@ function Btn(props) {
         //     }
         // }
         // setSrcRec("");
-
     }
 
     function sendVid() {// let currentText = document.getElementById("audioMes").value;
@@ -280,7 +263,6 @@ function Btn(props) {
         //     }
         // }
         // setSrcVid("");
-
     }
 
     
@@ -299,69 +281,71 @@ function Btn(props) {
 
         <div className='bottom-bar' style={{backgroundColor: "rgb(194 190 190 / 42%)"}}>
             <div className="input-group">
-                <button style={{border:"0px",padding: "0px"}} className="btn  " type="button"
-                        aria-expanded="false"> <div className="btn-group">
-                    <button type="button" id="actual-btn" className="btn myfunction btn-prim "
-                            data-toggle="dropdown" aria-haspopup="true"
-                            aria-expanded="false">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                             className="bi bi-paperclip" viewBox="0 0 16 16">
-                            <path
-                                d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
-                        </svg>
-                    </button>
-                    <div className="dropdown-menu">
-                        {/*  pic icon*/}
-                        <button input type="file" accept="image/*" className="fs-6 dropdown-item item"
-                                data-toggle="modal"
-                                data-target="#img-modal"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                               height="16"
-                                                               fill="currentColor" className="bi bi-image-fill"
-                                                               viewBox="0 0 16 16">
-                            <path d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0
-
-                                            1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0
-                                             0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3
-                                             .71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12zm5-6.5a1.5 1.5 0 1 0-3 0
-                                             1.5 1.5 0 0 0 3 0z"/>
-
-                        </svg>
-                        </button>
+                {/*<button style={{border:"0px",padding: "0px"}} className="btn  " type="button"*/}
+                {/*        aria-expanded="false"> <div className="btn-group">*/}
+                {/*    <button type="button" id="actual-btn" className="btn myfunction btn-prim "*/}
+                {/*            data-toggle="dropdown" aria-haspopup="true"*/}
+                {/*            aria-expanded="false">*/}
+                {/*        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"*/}
+                {/*             className="bi bi-paperclip" viewBox="0 0 16 16">*/}
+                {/*            <path*/}
+                {/*                d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>*/}
+                {/*        </svg>*/}
+                {/*    </button>*/}
+                {/*    <div className="dropdown-menu">*/}
+                        {/*/!*  pic icon*!/*/}
+                        {/*<button input type="file" accept="image/*" className="fs-6 dropdown-item item"*/}
+                        {/*        data-toggle="modal"*/}
+                        {/*        data-target="#img-modal"> <svg xmlns="http://www.w3.org/2000/svg" width="16"*/}
+                        {/*                                       height="16"*/}
+                        {/*                                       fill="currentColor" className="bi bi-image-fill"*/}
+                        {/*                                       viewBox="0 0 16 16">*/}
+                        {/*    <path d="M.002 3a2 2 0 0 1 2-2h12a2 2 0 0*/}
+                        {/*                    1 2 2v10a2 2 0 0 1-2 2h-12a2 2 0 0 1-2-2V3zm1 9v1a1 1 0*/}
+                        {/*                     0 0 1 1h12a1 1 0 0 0 1-1V9.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3*/}
+                        {/*                     .71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12zm5-6.5a1.5 1.5 0 1 0-3 0*/}
+                        {/*                     1.5 1.5 0 0 0 3 0z"/>*/}
+                        {/*</svg>*/}
+                        {/*</button>*/}
 
                         {/*  record icon*/}
-                        <button className="dropdown-item rec" href="#" data-toggle="modal"
-                                data-target="#record-modal"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                                 height="16"
-                                                                 fill="currentColor" className="bi bi-mic-fill"
-                                                                 viewBox="0 0 16 16">
-                            <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/><path
-                            d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5
-                                    4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
-                        </svg>
-                        </button>
+                        {/*<button className="dropdown-item rec" href="#" data-toggle="modal"*/}
+                        {/*        data-target="#record-modal"><svg xmlns="http://www.w3.org/2000/svg" width="16"*/}
+                        {/*                                         height="16"*/}
+                        {/*                                         fill="currentColor" className="bi bi-mic-fill"*/}
+                        {/*                                         viewBox="0 0 16 16">*/}
+                        {/*    <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/><path*/}
+                        {/*    d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5*/}
+                        {/*            4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>*/}
+                        {/*</svg>*/}
+                        {/*</button>*/}
 
 
                         {/*  video icon*/}
-                        <button className="dropdown-item " href="#" data-toggle="modal"
-                                data-target="#vid-modal"><svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                                              height="16"
-                                                              fill="currentColor"
-                                                              className="bi bi-camera-reels-fill"
-                                                              viewBox="0 0 16 16">
-                            <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            <path d="M9 6a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
-                            <path
-                                d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0
-              1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7z"/>
-                        </svg>
-                        </button>
-                    </div>
-                </div>
-                </button>
+                        {/*<button className="dropdown-item " href="#" data-toggle="modal"*/}
+                        {/*        data-target="#vid-modal"><svg xmlns="http://www.w3.org/2000/svg" width="16"*/}
+                        {/*                                      height="16"*/}
+                        {/*                                      fill="currentColor"*/}
+                        {/*                                      className="bi bi-camera-reels-fill"*/}
+                        {/*                                      viewBox="0 0 16 16">*/}
+                        {/*    <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>*/}
+                        {/*    <path d="M9 6a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>*/}
+                        {/*    <path*/}
+                        {/*        d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0*/}
+                        {/*1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h7z"/>*/}
+                        {/*</svg>*/}
+                        {/*</button>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
+                {/*</button>*/}
 
                 <input id="current-text" type="text" style={{borderRadius:"50px"}} className="form-control" aria-label="Text input with 2 dropdown buttons"/>
                 <button style={{backgroundColor:"transparent", border:"0px"}} onClick={()=>send(props.id)}>
-                    <i className='fa fa-send'></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                         className="bi bi-send" viewBox="0 0 16 16">
+                        <path
+                            d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576 6.636 10.07Zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+                    </svg>
                 </button>
 
 
@@ -372,15 +356,11 @@ function Btn(props) {
                          <span>
                          <div className="input-group">
 
-
-
                             <span>
                              </span>
                          </div>
                      </span>
                  </span>
-
-                        
             </div>
 
 

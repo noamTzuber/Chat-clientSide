@@ -39,6 +39,7 @@ function UserData(props) {
                 document.getElementById("addUserErrorMessage").innerHTML = "the user already exist"
             }
         }
+
         if(server === '' || nickName ===''|| contactId === ''){
             document.getElementById("addUserErrorMessage").innerHTML = "please fill all the fields"
 
@@ -82,8 +83,6 @@ function UserData(props) {
         //         break
         //     }
         // }
-
-
         // if(onMyContacts){
         //     document.getElementById("addUserErrorMessage").innerHTML = "the user already exist";
         // }
