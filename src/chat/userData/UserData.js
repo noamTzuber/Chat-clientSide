@@ -25,16 +25,23 @@ function UserData(props) {
         document.getElementById("inputAddServer").value = '';
 
         let exist = false;
-        let onMyContacts = false;
+        let isFailed = false;
 
-        // check if the contact name already in my contact list
+       // check if want to add myself
+        if(contactId === props.myUser.id){
+            isFailed = true;
+            document.getElementById("addUserErrorMessage").innerHTML = "you can't add yourself"
+        }
+        console.log(nickName.length)
+        if(nickName.length > 25){
+            isFailed = true;
+            document.getElementById("addUserErrorMessage").innerHTML = "the nickName is too long"
+        }
+
         for (let j = 0; j < props.myUser.contacts.length; j++) {
-            if(contactId === props.myUser.id){
-                onMyContacts = true;
-                document.getElementById("addUserErrorMessage").innerHTML = "you can't add yourself"
-            }
+            // check if the contact name already in my contact list
             if (props.myUser.contacts[j].id === contactId) {
-                onMyContacts = true;
+                isFailed = true;
                 document.getElementById("addUserErrorMessage").innerHTML = "the user already exist"
             }
         }
@@ -43,7 +50,7 @@ function UserData(props) {
             document.getElementById("addUserErrorMessage").innerHTML = "please fill all the fields"
 
         }
-        else if (!onMyContacts) {
+        else if (!isFailed) {
             console.log("in here!")
             await axios.post("https://"+server+"/api/invitations/",{
                 from:props.myUser.id,

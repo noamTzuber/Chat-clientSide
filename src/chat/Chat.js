@@ -70,7 +70,6 @@ function Chat() {
                 if(newUser.current.id !== src && newUser.current.id !== dst){
                     return
                 }
-
                 let chatRoom = newChat.current.find((chat) => (chat.user1 == src && chat.user2 == dst) || (chat.user2 == src && chat.user1 == dst));
                 if (chatRoom === undefined) {
                     return
