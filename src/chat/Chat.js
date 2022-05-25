@@ -60,6 +60,7 @@ function Chat() {
         return date;
 
     }
+
     useEffect( () => {
         if (!con) {
             return;
