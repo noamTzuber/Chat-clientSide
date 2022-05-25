@@ -84,12 +84,12 @@ function Register() {
                             .then(data => {
                                 // console.log(data)
                             })
-                        );
+                        ).then( ()=> navigate('/Chat', {state:{id:newUserName}})
+                        )
                     
                         
     // }
                     // users.push({ id: newUserName,localhost:server, name:newNickname, password: newPassword, chats: [], contacts:[]})
-                    navigate('/Chat', {state:{id:newUserName}})
                 }
             // }
 

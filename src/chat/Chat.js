@@ -98,9 +98,9 @@ function Chat() {
 
             })
             con.on("ContactAdded", async (contactId, name, server, src, dst) => {
-                let contactList=newUser.current.contacts;
+
                 let contact=newUser.current.contacts.find((contact)=>(contact.id === contactId))
-                if(contact !== undefined || (newUser.current.id !== src && newUser.current.id !== dst) ){
+                if(contact !== undefined || (newUser.current.id !== src && newUser.current.id !== dst)){
                     return;
                 }
                 await fetch("https://localhost:1234/api/Contact/User?connectedId=" + id)
@@ -109,7 +109,7 @@ function Chat() {
                         newUser.current.contacts=data.contacts;
                     }).then(()=>{
                         newChat.current.push({id:newChat.current.length+1,user1:src,user2:dst,messages:[]})
-                        console.log( newChat.current)
+                        console.log(newChat.current)
                         setMyChats(newChat.current.concat([]));
                     });
             })

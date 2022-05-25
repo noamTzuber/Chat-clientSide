@@ -130,11 +130,14 @@ function Btn(props) {
 
 
     async function postMessages(currentText) {
+
+
         const res = await axios.post("https://localhost:1234/api/Contact/" + chooseContact() + "/messages?connectedId=" + props.id,
         {
             ConnectedId: props.myUser.id,
             content: currentText
-        }).then(transferMessage(currentText)).then(async () => {
+        }).then(async () => {
+            console.log("aftwr transfer before invoke");
             await props.con.invoke("SendMessage", currentText, props.myUser.id, chooseContact());
             let newContacts = props.myUser.contacts;
             for(let i = 0 ; i <newContacts.length; i++){{
@@ -145,6 +148,19 @@ function Btn(props) {
                 }
             }}
 
+        }).then(async (currentText)=> {
+
+            if (props.myUser.server !== chooseContactServer()) {
+                let http="https://" + chooseContactServer() + "/api/transfer/"
+                await axios.post(http,
+                    {
+                        from: props.myUser.id,
+                        to: chooseContact(),
+                        content: currentText
+                    }).catch(res => {
+                    console.log("catch");
+                })
+            }
         })
     }
 
@@ -159,17 +175,19 @@ function Btn(props) {
     }
 
     async function transferMessage(currentText) {
+
         if(props.myUser.server !== chooseContactServer()){
+
             const res = await axios.post("https://"+chooseContactServer +"/api/transfer/",
             {
                 from: props.myUser.id,
-                to: currentText,
+                to: chooseContact(),
                 content: currentText
+            }).catch(e=>{
+                console.log("in transfer",chooseContactServer(),"   myuser=",props.myUser.id);
             })
         }
 
-        if(props.myUser.server === chooseContactServer()){
-        }
     }
         
         
