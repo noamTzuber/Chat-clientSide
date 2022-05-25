@@ -33,6 +33,7 @@ function UserData(props) {
                 onMyContacts = true;
                 document.getElementById("addUserErrorMessage").innerHTML = "you can't add yourself"
             }
+
             if (props.myUser.contacts[j].id === contactId) {
                 onMyContacts = true;
                 document.getElementById("addUserErrorMessage").innerHTML = "the user already exist"
