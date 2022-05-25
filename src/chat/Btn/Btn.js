@@ -127,6 +127,20 @@ function Btn(props) {
         // }
         // audio.value = "";
     }
+    function getTime(){
+        var today = new Date();
+        let month =today.getMonth()+1<9?'0'+(today.getMonth()+1) : (today.getMonth()+1)
+        let day =today.getDay()<9?'0'+(today.getDay()) : (today.getDay())
+        let hour =today.getHours()<9?'0'+(today.getHours()) : (today.getHours())
+        let minutes=today.getMinutes()<9?'0'+(today.getMinutes()) : (today.getMinutes())
+        let second=today.getSeconds()<9?'0'+(today.getSeconds()) : (today.getSeconds())
+        let date=today.getFullYear()+'-'+month+'-'+day+'T'+hour+
+            ':'+minutes+':'+second+'.'+today.getMilliseconds();
+        return date;
+
+    }
+
+
     async function postMessages(currentText) {
         const res = await axios.post("https://localhost:1234/api/Contact/" + chooseContact() + "/messages?connectedId=" + props.id,
         {
@@ -143,6 +157,15 @@ function Btn(props) {
                 }
             }}
 
+
+            let newContacts = props.myUser.contacts;
+            for(let i = 0 ; i <newContacts.length; i++){{
+                if(newContacts[i].id === chooseContact()){
+                    newContacts[i].last = currentText;
+                    newContacts[i].lastdate = getTime();
+                    props.setMyUser({ id: props.myUser.id, name: props.myUser.name,  password: props.myUser.password,  server: props.myUser.server, contacts: newContacts })
+                }
+            }}
         })
     }
 
@@ -157,6 +180,7 @@ function Btn(props) {
     }
 
     async function transferMessage(currentText) {
+
         if(props.myUser.server !== chooseContactServer()){
             const res = await axios.post("https://"+chooseContactServer +"/api/transfer/",
             {
@@ -179,6 +203,7 @@ function Btn(props) {
             return;
         }
         postMessages(currentText, props.id);
+
 
 
 
