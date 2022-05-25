@@ -75,10 +75,16 @@ function Login() {
             <button id='loginButton' className="btn btn-primary" type="button" onClick={() => {getAllUsers(varifyLogin)}}>Login</button>
 
             <div id="errorMessage"></div>
+            <div>
+
+            </div>
 
             <div id='registration'>
                 <div className="fs-6">Have not accounted yet?</div>
                 <a href="/Register" style={{display: 'table', margin: '0 auto'}} className="fs-6">Signed up</a>
+                <div className="fs-6" style={{paddingLeft:"15%"}}>Want to reat us?</div>
+                <a href="http://localhost:5192" style={{display: 'table', margin: '0 auto'}} className="fs-6">Rate</a>
+
             </div>
 
 
