@@ -60,7 +60,7 @@ function Register() {
         // if(document.getElementById("uploadImageButten").value.length > 0){
             // let img = document.getElementById("uploadImageButten");
             // let imgURL = document.getElementById("uploadImageButten").value;
-            let server = document.getElementById("server").value;
+            // let server = document.getElementById("server").value;
             // if (imgURL.length > 0) {
             // let fReader = new FileReader()
             // fReader.readAsDataURL(img.files[0])
@@ -74,7 +74,7 @@ function Register() {
                             id: newUserName,
                             name: newNickname,
                             password: newPassword,
-                            server: server,
+                            server: "localhost:1234",
                             contacts: []
                         }
 
@@ -144,10 +144,7 @@ function Register() {
                 <div className="fs-6">Confirm Password</div>
                 <input id='password-confirm' type="password" className="form-control" placeholder="Type your Password"/>
             </div>
-            <div className='inputAndTitle'>
-                <div className="fs-6">Server</div>
-                <input id='server' type="text" className="form-control" placeholder="Type your Server"/>
-            </div>
+            
 
 
             
