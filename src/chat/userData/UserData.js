@@ -29,6 +29,10 @@ function UserData(props) {
 
         // check if the contact name already in my contact list
         for (let j = 0; j < props.myUser.contacts.length; j++) {
+            if(contactId === props.myUser.id){
+                onMyContacts = true;
+                document.getElementById("addUserErrorMessage").innerHTML = "you can't add yourself"
+            }
             if (props.myUser.contacts[j].id === contactId) {
                 onMyContacts = true;
                 document.getElementById("addUserErrorMessage").innerHTML = "the user already exist"
