@@ -22,7 +22,7 @@ function Chat() {
 
     const [myChats, setMyChats] = useState([]);
     const getChats = async function () {
-        await fetch("https://localhost:1234/api/Contact/Chats?connectedId=" + id)
+        await fetch("http://localhost:1234/api/contacts/Chats?connectedId=" + id)
             .then(response => response.json())
             .then(data => {
                 newChat.current = data;
@@ -32,7 +32,7 @@ function Chat() {
     useEffect(getChats, [1]);
 
     useEffect(async()=>{
-        await fetch("https://localhost:1234/api/Contact/User?connectedId=" + id)
+        await fetch("http://localhost:1234/api/contacts/User?connectedId=" + id)
             .then(response => response.json())
             .then(data => {
                 newUser.current=data;
@@ -41,7 +41,7 @@ function Chat() {
     },[]);
 
     useEffect(() => {
-        const connectToServer = new HubConnectionBuilder().withUrl('https://localhost:1234/Hub/ChatHub')
+        const connectToServer = new HubConnectionBuilder().withUrl('http://localhost:1234/Hub/ChatHub')
             .withAutomaticReconnect()
             .build();
         setCon(connectToServer);
@@ -98,11 +98,12 @@ function Chat() {
 
             })
             con.on("ContactAdded", async (contactId, name, server, src, dst) => {
+
                 let contact=newUser.current.contacts.find((contact)=>(contact.id === contactId))
                 if(contact !== undefined || (newUser.current.id !== src && newUser.current.id !== dst)){
                     return;
                 }
-                await fetch("https://localhost:1234/api/Contact/User?connectedId=" + id)
+                await fetch("http://localhost:1234/api/contacts/User?connectedId=" + id)
                     .then(response => response.json())
                     .then(data => {
                         newUser.current.contacts=data.contacts;
@@ -122,7 +123,7 @@ function Chat() {
 
 
     const userList = myUser.contacts.map((contact, key) => {
-        return < SummaryConversation{...contact} myUser={newUser.current} setCurrentConversation={setCurrentTalk} myChats={myChats} num={key} key={key} />
+        return < SummaryConversation{...contact} myUser={myUser} setCurrentConversation={setCurrentTalk} myChats={myChats} num={key} key={key} />
     });
 
     return (
@@ -132,7 +133,7 @@ function Chat() {
                 <div className="container">
                     <div className="section" id="left-section">
                         <div className="content"   >
-                            <UserData con={con} myUser={newUser.current} setContacts={setContacts} />
+                            <UserData con={con} myUser={myUser} setContacts={setContacts} />
                         </div>
                         <div className="scrollable-content" id="summary-conversation"
                              style={{ marginTop: "1%", backgroundColor: "rgb(194 190 190 / 42%)" }}>

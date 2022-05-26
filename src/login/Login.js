@@ -5,7 +5,7 @@ import axios from 'axios';
 
 
 async function getAllUsers(onReply) {
-    await fetch("https://localhost:1234/api/Contact/AllUsers")
+    await fetch("http://localhost:1234/api/contacts/AllUsers")
     .then(response => response.json())
     .then(data => {
         // onReply(data);
@@ -17,18 +17,13 @@ async function getAllUsers(onReply) {
 function Login() {
     const [allUsers, setAllUsers] = useState([])
     async function getUsers(){
-            const res = await fetch("https://localhost:1234/api/Contact/AllUsers");
+            const res = await fetch("http://localhost:1234/api/contacts/AllUsers");
             const data = await res.json();
             setAllUsers(data)
         }
 
 
 
-    // async function getAllUsers(){
-    //     const axios = require('axios');
-    //     const res = await axios.get("https://localhost:1234/api/Contact/AllUsers").then(resp=>{setAllUsers(resp.data)});
-
-    // }
 
     
 

@@ -51,12 +51,14 @@ function UserData(props) {
 
         }
         else if (!isFailed) {
-            await axios.post("https://"+server+"/api/invitations",{
+            console.log("in here!")
+            await axios.post("http://"+server+"/api/invitations",{
                 from:props.myUser.id,
                 to:contactId,
                 server:props.myUser.server
             }).then(async (res) =>{
-                await axios.post("https://localhost:1234/api/Contact/?connectedId="+props.myUser.id, {
+
+                await axios.post("http://localhost:1234/api/contacts/?connectedId="+props.myUser.id, {
                     id: contactId,
                     name: nickName,
                     server: server

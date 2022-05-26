@@ -5,7 +5,7 @@ import {useNavigate} from 'react-router-dom'
 
 
 async function getAllUsers(onReply) {
-    await fetch("https://localhost:1234/api/Contact/AllUsers")
+    await fetch("http://localhost:1234/api/contacts/AllUsers")
     .then(response => response.json())
     .then(data => {
         onReply(data);
@@ -13,6 +13,7 @@ async function getAllUsers(onReply) {
 }
 
 function Register() {
+
     const navigate = useNavigate()
 
     function validation(users) {
@@ -65,11 +66,12 @@ function Register() {
             // let fReader = new FileReader()
             // fReader.readAsDataURL(img.files[0])
             // fReader.onloadend = function (event) {
+
                 if (errorMessage.innerHTML === "") {
                     //push
 
 
-                        const response =  axios.post("https://localhost:1234/api/Contact/User", 
+                        const response =  axios.post("http://localhost:1234/api/contacts/User",
                         {
                             id: newUserName,
                             name: newNickname,
@@ -79,7 +81,7 @@ function Register() {
                         }
 
                         ).then(
-                            fetch("https://localhost:1234/api/Contact/AllUsers")
+                            fetch("http://localhost:1234/api/contacts/AllUsers")
                             .then(response => response.json())
                             .then(data => {
                                 // console.log(data)
