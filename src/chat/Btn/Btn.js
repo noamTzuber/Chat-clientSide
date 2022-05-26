@@ -137,7 +137,7 @@ function Btn(props) {
             ConnectedId: props.myUser.id,
             content: currentText
         }).then(async () => {
-            console.log("aftwr transfer before invoke");
+
             await props.con.invoke("SendMessage", currentText, props.myUser.id, chooseContact());
             let newContacts = props.myUser.contacts;
             for(let i = 0 ; i <newContacts.length; i++){{
@@ -165,7 +165,7 @@ function Btn(props) {
                         to: chooseContact(),
                         content: currentText
                     }).catch(res => {
-                    console.log("catch");
+
                 })
             }
         })

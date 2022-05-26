@@ -109,7 +109,7 @@ function Chat() {
                         newUser.current.contacts=data.contacts;
                     }).then(()=>{
                         newChat.current.push({id:newChat.current.length+1,user1:src,user2:dst,messages:[]})
-                        console.log(newChat.current)
+
                         setMyChats(newChat.current.concat([]));
                     });
             })

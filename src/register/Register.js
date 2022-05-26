@@ -84,7 +84,7 @@ function Register() {
                             fetch("http://localhost:1234/api/contacts/AllUsers")
                             .then(response => response.json())
                             .then(data => {
-                                // console.log(data)
+
                             })
                         ).then( ()=> navigate('/Chat', {state:{id:newUserName}})
                         )

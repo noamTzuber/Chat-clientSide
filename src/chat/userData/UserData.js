@@ -32,7 +32,7 @@ function UserData(props) {
             isFailed = true;
             document.getElementById("addUserErrorMessage").innerHTML = "you can't add yourself"
         }
-        console.log(nickName.length)
+
         if(nickName.length > 25){
             isFailed = true;
             document.getElementById("addUserErrorMessage").innerHTML = "the nickName is too long"
@@ -51,7 +51,7 @@ function UserData(props) {
 
         }
         else if (!isFailed) {
-            console.log("in here!")
+
             await axios.post("http://"+server+"/api/invitations",{
                 from:props.myUser.id,
                 to:contactId,
