@@ -148,10 +148,10 @@ function Btn(props) {
                 }
             }}
 
-        }).then(async (currentText)=> {
+        }).then(async ()=> {
 
             if (props.myUser.server !== chooseContactServer()) {
-                let http="https://" + chooseContactServer() + "/api/transfer/"
+                let http="https://" + chooseContactServer() + "/api/transfer"
                 await axios.post(http,
                     {
                         from: props.myUser.id,
@@ -177,8 +177,7 @@ function Btn(props) {
     async function transferMessage(currentText) {
 
         if(props.myUser.server !== chooseContactServer()){
-
-            const res = await axios.post("https://"+chooseContactServer +"/api/transfer/",
+            const res = await axios.post("https://"+chooseContactServer +"/api/transfer",
             {
                 from: props.myUser.id,
                 to: chooseContact(),

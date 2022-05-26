@@ -98,7 +98,6 @@ function Chat() {
 
             })
             con.on("ContactAdded", async (contactId, name, server, src, dst) => {
-
                 let contact=newUser.current.contacts.find((contact)=>(contact.id === contactId))
                 if(contact !== undefined || (newUser.current.id !== src && newUser.current.id !== dst)){
                     return;
@@ -123,7 +122,7 @@ function Chat() {
 
 
     const userList = myUser.contacts.map((contact, key) => {
-        return < SummaryConversation{...contact} myUser={myUser} setCurrentConversation={setCurrentTalk} myChats={myChats} num={key} key={key} />
+        return < SummaryConversation{...contact} myUser={newUser.current} setCurrentConversation={setCurrentTalk} myChats={myChats} num={key} key={key} />
     });
 
     return (
@@ -133,7 +132,7 @@ function Chat() {
                 <div className="container">
                     <div className="section" id="left-section">
                         <div className="content"   >
-                            <UserData con={con} myUser={myUser} setContacts={setContacts} />
+                            <UserData con={con} myUser={newUser.current} setContacts={setContacts} />
                         </div>
                         <div className="scrollable-content" id="summary-conversation"
                              style={{ marginTop: "1%", backgroundColor: "rgb(194 190 190 / 42%)" }}>
