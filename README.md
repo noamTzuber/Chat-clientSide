@@ -1,6 +1,6 @@
 
 # About this project
-In this project we created Chat site that users can talk in real time others.
+In this project we created Chat site that users can talk in real time others, use with **React**.
 
 ## Getting Started
 Run the server from [ https://github.com/hilaninio/ASS2](https://github.com/noamTzuber/WebApiServer)
@@ -16,7 +16,7 @@ server: localhost:1234
 To add a conversation with a new person, click on the Add User icon and enter a valid username , choose a nickname for this contact and enter his server.
 
 
-# Package we used:
+## Package we used:
 
 react-router-dom
 
