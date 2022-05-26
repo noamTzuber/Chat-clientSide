@@ -1,7 +1,7 @@
 
 # read me
 
-The package we used are:
+The package we used are (they are were in the first project):
 
 "react": "^ 17.0.2"
 
@@ -16,16 +16,22 @@ The package we used are:
 
 In order to upload the site, write "npm start" in the command line (write "npm install" in the command line for the first time you use the project).
 
+
+we are also added those installtion for working with api web and signalr:
+
+npm install yarn -g
+
+npm install exios
+
+npm install @microsoft/signalr
+
+yarn add react-signalr
+
+
 The existing user is:
 
-Username: harry
+Username: yossi
+Password: yossi1234
+server: localhost:1234
 
-Password: harry1234
-
-In this user you can see correspondence of conversations with 5 different users encoded in the data structure of the program, so when refreshed they will not be deleted, but new messages yes.
-
-To add a conversation with a new person, click on the Add User icon and enter a username that exists in the data structure. (Our existing users are itay and noam) Please note that a user who already has us on the call list cannot be added.
-
-///for the second part of the project
-npm install yarn -g
-yarn add react-signalr
+To add a conversation with a new person, click on the Add User icon and enter a valid username , choose nickName for this contact and enter his server.
