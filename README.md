@@ -2,7 +2,7 @@
 # About this project
 In this project we created Chat site that users can talk in real time others.
 
-# Getting Started
+## Getting Started
 Run the server from [ https://github.com/hilaninio/ASS2](https://github.com/noamTzuber/WebApiServer)
 type "npm start" in commend line (in the first time install npm with: "npm install").
 register to the site and get started!
